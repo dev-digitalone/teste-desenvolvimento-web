@@ -1,7 +1,5 @@
 <h2 align="center">
   <img alt="Digital One" src="https://user-images.githubusercontent.com/51726945/85145110-746aa600-b222-11ea-8a50-f73ec9188429.png" />
-  
-  Teste para desenvolvedor web
 </h2>
 
 <h2 align="center">  
