@@ -1,10 +1,12 @@
 <h2 align="center">
-  <img alt="Digital One" src="https://user-images.githubusercontent.com/51726945/85145110-746aa600-b222-11ea-8a50-f73ec9188429.png" />
+  <img alt="Digital One" src="https://user-images.githubusercontent.com/51726945/85145615-3326c600-b223-11ea-84bf-319fb54949b5.png" />
 </h2>
 
 <h2 align="center">  
   Teste para desenvolvedor Web
 </h2>
+
+<br>
 
 A [Digital One](https://www.digitalone.com.br/) está sempre em busca de profissionais com boa capacidade de aprendizado e adaptação, mas principalmente motivação.
 
