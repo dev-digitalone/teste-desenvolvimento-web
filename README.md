@@ -27,17 +27,17 @@ Este teste tem como objetivo avaliar seus conhecimentos. Fique tranquilo, caso n
 <details>
 
   <summary>Funcionalidades</summary>
-    - O Desafio deverá ter as seguintes funcionalidades:
+   - O Desafio deverá ter as seguintes funcionalidades:
       
-      - Cadastro de usuários
-      - Recuperação de senha para usuários já cadastrados
-      - Login
-      - Publicações (Posts)
-        - Create
-        - Read
-        - Update
-        - Delete
-        - Index (Listagem)
+   - Cadastro de usuários
+   - Recuperação de senha para usuários já cadastrados
+   - Login
+   - Publicações (Posts)
+     - Create
+     - Read
+     - Update
+     - Delete
+     - Index (Listagem)
 </details>
 
 <details>
