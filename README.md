@@ -58,7 +58,7 @@ Este teste tem como objetivo avaliar seus conhecimentos. Fique tranquilo, caso n
         - title: `VARCHAR(245)`
         - description: `VARCHAR(245)`
         - img_url: `VARCHAR(245)`
-        - **Não será obrigatório o upload de imagens**, poderá ser cadastrado somente com a URL da mesma.
+          - **Não será obrigatório o upload de imagens**, poderá ser cadastrado somente com a URL da mesma.
         - created_at: `TIMESTAMP`
         - author: `Criar uma FK (foreign key) para relacionamento com usuário`
 </details>
