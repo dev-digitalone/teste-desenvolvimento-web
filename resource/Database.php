@@ -9,7 +9,7 @@ try{
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    echo "Conexão realizada com sucesso";
+    //echo "Conexão realizada com sucesso";
 
 }catch (PDOException $ex) {
     echo "Conexão falhou".$ex->getMessage();
