@@ -18,6 +18,7 @@
     }
 
     if(empty($form_errors)){
+        
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];
