@@ -1,17 +1,16 @@
 version: '3.3'
-volumes:
-  data:
 services:
-  db:
-    image: mysql:5.7
-    ports:
-      - "3306:3306"
-    volumes:
-      - data:/var/lib/mysql
-      - ./app_development.sql:/docker-entrypoint-initdb.d/dump.sql
+  mysqldb:
+    image: mysql:latest
+    build: ./app/Database
+    container_name: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=app_development
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app_development
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass
+    ports:
+      - 3306:3306
   app:
       depends_on:
        - db
@@ -21,4 +20,4 @@ services:
       ports:
        - '8081:80'
       environment:
-        PMA_HOST: db
+        PMA_HOST: mysqldb
