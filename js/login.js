@@ -18,3 +18,22 @@ $(".texto-cadastrar").on("click", function() {
         $(".form-cadastro").css("display", "block");
     };
 });
+
+$(document).ready(function() {
+    var url = (window.location.origin + "/teste-desenvolvimento-web/usuario/novoUsuario")
+
+    $('#form-cadastro').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: $("#form-cadastro").serialize(),
+            success: function() {
+                swal("Sucesso!", "Usuário cadastrado!", "success");
+            },
+            error: function() {
+                swal("ERRO!", "Houve algum problema no seu cadastro!", "error");
+            }
+        });
+    });
+});
