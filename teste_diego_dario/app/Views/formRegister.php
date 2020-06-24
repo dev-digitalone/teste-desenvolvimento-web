@@ -7,7 +7,7 @@
 }
 ?>
 
-<form action="insertData" method="post">
+<form action="insertdata" method="post">
     <div class="form-group">
         <div class="col-md-4 mb-3">
             <label for="nameInputLabel">Name:</label>
