@@ -1,0 +1,24 @@
+version: '3.3'
+volumes:
+  data:
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - data:/var/lib/mysql
+      - ./app_development.sql:/docker-entrypoint-initdb.d/dump.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=app_development
+  app:
+      depends_on:
+       - db
+      image: phpmyadmin/phpmyadmin:latest
+      container_name: phpmyadmin
+      restart: always
+      ports:
+       - '8081:80'
+      environment:
+        PMA_HOST: db
