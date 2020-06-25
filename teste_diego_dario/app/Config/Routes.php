@@ -34,6 +34,7 @@ $routes->get('/', 'Home::index');
 $routes->add('registration', 'Home::registration');
 $routes->add('insertdata', 'Home::insertData');
 $routes->add('loginuser', 'Home::loginUser');
+$routes->add('contact', 'Home::contact');
 
 /**
  * --------------------------------------------------------------------
