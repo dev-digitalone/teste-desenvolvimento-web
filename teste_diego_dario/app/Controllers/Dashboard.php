@@ -6,7 +6,7 @@ use CodeIgniter\Controller;
 use App\Models\UsersModel;
 
 
-class Home extends BaseController
+class Dashboard extends BaseController
 {
 	public function index()
 	{
@@ -26,7 +26,7 @@ class Home extends BaseController
 		return view('contact', $data);
 	}
 
-	public function insertData()
+	public function insertUser()
 	{
 		$rules = [
 			'name' => 'required|min_length[3]|max_length[50]',
@@ -34,17 +34,19 @@ class Home extends BaseController
 			'password' => 'required|min_length[6]|max_length[60]'
 		];
 
-		$users_model = new UsersModel();
+		$usersModel = new UsersModel();
 		$session = \Config\Services::session();
 
 		if ($this->validate($rules)) {
-			$data = array(
+			$user = array(
 				'name' => $this->request->getVar('name'),
 				'email' => $this->request->getVar('email'),
 				'password' => md5($this->request->getVar('password'))
 			);
-			$users_model->insertData($data);
+
+			$usersModel->create($user);
 			$session->setFlashdata('messageRegisterOk', 'Registered Successfully. Please, login.');
+			
 			return redirect()->to('/');
 		} else {
 			return $this->registration();
@@ -59,29 +61,29 @@ class Home extends BaseController
 			'password' => 'required|min_length[5]|max_length[60]',
 		];
 
-		$users_model = new UsersModel();
+		$usersModel = new UsersModel();
 		$session = \Config\Services::session();
 
 		if (!$this->validate($rules)) return $this->index();
 		
-			$data = array(
+			$user = array(
 				'id' => '',
 				'email' => $this->request->getVar('email'),
 				'password' => $this->request->getVar('password'),
 				'name' => '',
 				'isLoggedIn' => FALSE
 			);
-
-			if (!($userRow = $users_model->checkPassword($data))) {
+			if (!($userRow = $usersModel->isAuthenticated($user))) {
 				$session->setFlashdata('loginFail', ' Incorrect username (your e-mail) or password.');
 				return redirect()->to('/');
 			} else {
+				print_r($userRow['user_id']);
 				//$orders_model = new OrdersModel();
-				$data['isLoggedIn'] = TRUE;
-				$data['id'] = $userRow['user_id'];
-				$data['name'] = $userRow['name'];
+				$user['isLoggedIn'] = TRUE;
+				$user['id'] = $userRow['user_id'];
+				$user['name'] = $userRow['name'];
 				//$data['orders'] = $orders_model->getOrdersbyCustomer($data['id']);
-				$session->set($data);
+				$session->set($user);
 			}
 		
 	}

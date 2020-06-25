@@ -9,7 +9,7 @@ class UsersModel extends Model
     protected $primaryKey = 'user_id';
     protected $allowedFields = ['name', 'email', 'password'];
 
-    public function getData($id = null)
+    public function getUsers($id = null)
     {
         if ($id == null) {
             return $this->findAll();
@@ -17,12 +17,12 @@ class UsersModel extends Model
         return $this->asArray()->where(['user_id' => $id])->first();
     }
 
-    public function insertData($data)
+    public function create($data)
     {
         return $this->insert($data);
     }
 
-    public function checkPassword($data)
+    public function isAuthenticated($data)
     {
         return $this->where(['email' => $data['email'], 'password' => md5($data['password'])])->first();
     }

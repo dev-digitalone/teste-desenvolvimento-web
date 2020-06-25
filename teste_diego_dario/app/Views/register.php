@@ -13,7 +13,7 @@
 
     <!--Section heading-->
     <h2 class="h1-responsive font-weight-bold text-center my-4">Registre-se</h2>
-    <form class="text-center" action="insertdata" method="post">
+    <form class="text-center" action="insertuser" method="post">
         <div class="d-flex flex-column justify-content-center align-items-center">
 
             <div class="from-group col-md-5 mb-5">
