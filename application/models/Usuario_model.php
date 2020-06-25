@@ -17,4 +17,9 @@
 			return $this->db->get("usuarios")->result_array();
 		}
 
+		public function verificaEmail($email){
+			 $this->db->where("email", $email);
+			 return $this->db->get('usuarios')->row_array();
+		}
+
 	}

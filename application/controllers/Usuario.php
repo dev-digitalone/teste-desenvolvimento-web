@@ -13,18 +13,13 @@ class Usuario extends CI_Controller {
         );
 
         $this->load->model("usuario_model");
-        $this->usuario_model->salva($usuario);
-
-            $this->db->select_max('id');
-            $this->db->from('usuarios');
-            $query = $this->db->get();
-
-            if ($query->num_rows() > 0) {
-                foreach ($query->result() as $row) {
-
-                    $idNovoUsuario = $row->id;
-                }
-            }
+        
+        if(!$this->usuario_model->verificaEmail($usuario['email'])){
+            $this->usuario_model->salva($usuario);
+        }else{
+            $emailExistente = true;
+            echo ($emailExistente);
+        }
     }
 }
 

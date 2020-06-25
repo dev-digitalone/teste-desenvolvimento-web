@@ -28,10 +28,17 @@ $(document).ready(function() {
             url: url,
             type: "POST",
             data: $("#form-cadastro").serialize(),
-            success: function() {
-                swal("Sucesso!", "Usuário cadastrado!", "success");
+            success: function(response) {
+                if (response == 1) {
+                    swal("ERRO!", "E-mail já cadastrado!", "error");
+                } else {
+                    swal("Sucesso!", "Usuário cadastrado!", "success");
+                    $('#nome').val("");
+                    $('#email').val("");
+                    $('#senha').val("");
+                }
             },
-            error: function() {
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
                 swal("ERRO!", "Houve algum problema no seu cadastro!", "error");
             }
         });

@@ -27,12 +27,16 @@ class Login extends CI_Controller {
             $this->session->set_userdata("usuario_logado", $usuario);
 			$this->session->set_flashdata("success", "Logado com sucesso!");
 			header("Location: /teste-desenvolvimento-web/home");
-			die();
         } else {
 			$this->session->set_flashdata("danger", "Usuário ou senha inválidos!");
 			header("Location: /teste-desenvolvimento-web/login");
-			die();
         }
 
+    }
+
+    public function logout() {
+        $this->session->unset_userdata("usuario_logado");
+        $this->session->set_flashdata("success", "Deslogado com sucesso");
+        header("Location: /teste-desenvolvimento-web/login");
     }
 }

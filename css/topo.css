@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.container-topo {
+    align-items: center;
+}
+
+.section-topo {
+    padding-top: 5px;
+    background-color: #673AB7;
+}
+
+.infos-usuario {
+    display: inline-flex;
+    align-items: center;
+}
+
+.icone-home {
+    height: 24px;
+    float: right;
+}
+
+@media(max-width: 523px) {
+    .icone-home {
+        margin-top: 10px;
+    }
+}
+
+.icone-menu {
+    cursor: pointer;
+    height: 24px;
+}
+
+.icone-menu-fechar {
+    cursor: pointer;
+    height: 24px;
+}
+
+.nome-usuario {
+    color: #ffffff;
+    margin-bottom: 0;
+    margin-left: 20px;
+}
+
+.itens-usuario {
+    height: 0px;
+    position: fixed;
+    background: #673AB7;
+    transition: all 0.5s;
+    z-index: 99;
+}
+
+@media(max-width: 575px) {
+    .itens-usuario {
+        margin-left: -30px;
+    }
+}
+
+.open {
+    height: 215px!important;
+}
+
+.hide {
+    display: none;
+}
+
+.item-usuario {
+    opacity: 0;
+    transition: 0.1s;
+    padding: 10px;
+    border-bottom: 1px solid #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.pointer {
+    pointer-events: none;
+}
+
+.lista-itens-usuario {
+    list-style: none;
+    padding: 10px;
+}
+
+.item {
+    transition: all 0.1s;
+    color: #ffffff;
+}
+
+.item:hover {
+    margin-left: 3px;
+    text-decoration: none;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.item-icone {
+    height: 20px;
+    margin-right: 10px;
+}
