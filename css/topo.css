@@ -11,8 +11,10 @@
 }
 
 .section-topo {
-    padding-top: 5px;
+    padding: 10px 0 5px 0;
     background-color: #673AB7;
+    position: fixed;
+    top: 0;
 }
 
 .infos-usuario {
@@ -23,12 +25,6 @@
 .icone-home {
     height: 24px;
     float: right;
-}
-
-@media(max-width: 523px) {
-    .icone-home {
-        margin-top: 10px;
-    }
 }
 
 .icone-menu {

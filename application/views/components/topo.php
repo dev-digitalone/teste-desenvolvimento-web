@@ -5,9 +5,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <html lang="pt-br">
 
 <head>
+    <meta charset="UTF-8" />
+    <title>Teste de desenvolvimento</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="/teste-desenvolvimento-web/css/topo.css">
     <link rel="stylesheet" href="/teste-desenvolvimento-web/css/publicacao.css">
+    <link rel="stylesheet" href="/teste-desenvolvimento-web/css/home.css">
 </head>
 
 <body>
@@ -24,8 +28,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <ul class="lista-itens-usuario">
                     <li title="Nova publicação" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/add.png" /><a class="item" href="publicacao">Publicar</a></li>
                     <li title="Informações da conta" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/user.png" /><a class="item" href="#">Minha conta</a></li>
-                    <li title="Cadastrar um novo usuário" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/new-user.png" /><a class="item" href="#">Novo usuario</a></li>
-                    <li title="Sair da conta" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/sair.png" /><a class="item" href="login/logout">Sair</a></li>
+                    <li title="Minhas publicações" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/post.png" /><a class="item" href="minhasPublicacoes">Minhas publicações</a></li>
+                    <li title="Sair da conta" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/sair.png" /><a class="item" href="/teste-desenvolvimento-web/login/logout">Sair</a></li>
                 </ul>
 
             </div>

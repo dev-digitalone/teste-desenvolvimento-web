@@ -16,7 +16,7 @@
 
             <p class="texto-section-side texto1">Insira seus dados de acesso</p><br>
             <div class="itens-cadastro">
-                <p class="item texto-cadastrar">Cadastrar</p>
+                <p class="item texto-cadastrar">Cadastro</p>
                 <p class="item texto-login">Login</p>
             </div>
         </div>

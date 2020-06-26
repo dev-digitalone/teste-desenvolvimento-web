@@ -6,6 +6,7 @@ $("#icone-menu").on("click", function() {
         $(".item-usuario").removeClass("pointer");
         $(".icone-menu").addClass("hide");
         $(".icone-menu-fechar").removeClass("hide");
+        $(".conteudo-publicacao").css("z-index", "-1");
     }
 });
 
@@ -16,5 +17,6 @@ $("#icone-menu-fechar").on("click", function() {
     $(".item-usuario").addClass("pointer");
     $(".icone-menu").removeClass("hide");
     $(".icone-menu-fechar").addClass("hide");
+    $(".conteudo-publicacao").css("z-index", "1");
 
 })
