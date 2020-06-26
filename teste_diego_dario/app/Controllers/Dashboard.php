@@ -2,9 +2,7 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
 use App\Models\UsersModel;
-
 
 class Dashboard extends BaseController
 {
@@ -43,20 +41,19 @@ class Dashboard extends BaseController
 		$usersModel = new UsersModel();
 		$session = \Config\Services::session();
 
-		if ($this->validate($rules)) {
-			$user = array(
-				'name' => $this->request->getVar('name'),
-				'email' => $this->request->getVar('email'),
-				'password' => md5($this->request->getVar('password'))
-			);
+		if (!$this->validate($rules)) return $this->registration();
 
-			$usersModel->create($user);
-			$session->setFlashdata('messageRegisterOk', 'Registered Successfully. Please, login.');
+		$user = array(
+			'name' => $this->request->getVar('name'),
+			'email' => $this->request->getVar('email'),
+			'password' => md5($this->request->getVar('password'))
+		);
 
-			return redirect()->to('/');
-		} else {
-			return $this->registration();
-		}
+		$usersModel->create($user);
+
+		$session->setFlashdata('messageRegisterOk', 'Registered Successfully. Please, login.');
+
+		return redirect()->to('/');
 	}
 
 	public function loginUser()
@@ -79,24 +76,24 @@ class Dashboard extends BaseController
 			'name' => '',
 			'isLoggedIn' => FALSE
 		);
+
 		if (!($userRow = $usersModel->isAuthenticated($user))) {
 			$session->setFlashdata('loginFail', ' Incorrect username (your e-mail) or password.');
 			return redirect()->to('/');
-		} else {
-			//$orders_model = new OrdersModel();
-			$user['isLoggedIn'] = TRUE;
-			$user['id'] = $userRow['user_id'];
-			$user['name'] = $userRow['name'];
-			//$data['orders'] = $orders_model->getOrdersbyCustomer($data['id']);
-			$session->set($user);
-			return redirect()->to('/dashboard');
 		}
+		//$orders_model = new OrdersModel();
+		$user['isLoggedIn'] = TRUE;
+		$user['id'] = $userRow['user_id'];
+		$user['name'] = $userRow['name'];
+		//$data['orders'] = $orders_model->getOrdersbyCustomer($data['id']);
+		$session->set($user);
+		return redirect()->to('/dashboard');
 	}
 
 	public function logout()
 	{
 		$session = \Config\Services::session();
-		
+
 		$data['isLoggedIn'] = FALSE;
 		$data['name'] = "";
 		$data['email'] = "";
