@@ -11,10 +11,9 @@ class UsersModel extends Model
 
     public function getUsers($id = null)
     {
-        if ($id == null) {
-            return $this->findAll();
-        }
-        return $this->asArray()->where(['user_id' => $id])->first();
+        if ($id == null) return $this->findAll();
+        
+        return $this->asArray()->where(['user_id' => $id]);
     }
 
     public function create($data)

@@ -10,8 +10,6 @@
 <?= $this->section('content') ?>
 <!--Section: Register -->
 <section class="mb-5 ">
-
-    <!--Section heading-->
     <h2 class="h1-responsive font-weight-bold text-center my-4">Registre-se</h2>
     <form class="text-center" action="insertuser" method="post">
         <div class="d-flex flex-column justify-content-center align-items-center">
@@ -39,5 +37,4 @@
         <button type="submit" class="btn btn-primary col-md-2" name="submit">Submit</button>
     </form>
 </section>
-<!--Section: Contact v.2-->
 <?= $this->endSection() ?>

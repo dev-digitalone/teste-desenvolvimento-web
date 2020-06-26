@@ -13,7 +13,7 @@ class PostsModel extends Model
     {
        if ($id == null) return $this->findAll(); 
        
-       return $this->asArray()->where(['posts_id' => $id])->first();
+       return $this->asArray()->where(['posts_id' => $id]);
     }
 
     public function create($data)

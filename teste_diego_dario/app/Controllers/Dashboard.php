@@ -26,6 +26,12 @@ class Dashboard extends BaseController
 		return view('contact', $data);
 	}
 
+	public function dashboard()
+	{
+		$data['title'] = 'Dashboard';
+		return view('dashboard', $data);
+	}
+
 	public function insertUser()
 	{
 		$rules = [
@@ -46,7 +52,7 @@ class Dashboard extends BaseController
 
 			$usersModel->create($user);
 			$session->setFlashdata('messageRegisterOk', 'Registered Successfully. Please, login.');
-			
+
 			return redirect()->to('/');
 		} else {
 			return $this->registration();
@@ -65,26 +71,38 @@ class Dashboard extends BaseController
 		$session = \Config\Services::session();
 
 		if (!$this->validate($rules)) return $this->index();
+
+		$user = array(
+			'id' => '',
+			'email' => $this->request->getVar('email'),
+			'password' => $this->request->getVar('password'),
+			'name' => '',
+			'isLoggedIn' => FALSE
+		);
+		if (!($userRow = $usersModel->isAuthenticated($user))) {
+			$session->setFlashdata('loginFail', ' Incorrect username (your e-mail) or password.');
+			return redirect()->to('/');
+		} else {
+			//$orders_model = new OrdersModel();
+			$user['isLoggedIn'] = TRUE;
+			$user['id'] = $userRow['user_id'];
+			$user['name'] = $userRow['name'];
+			//$data['orders'] = $orders_model->getOrdersbyCustomer($data['id']);
+			$session->set($user);
+			return redirect()->to('/dashboard');
+		}
+	}
+
+	public function logout()
+	{
+		$session = \Config\Services::session();
 		
-			$user = array(
-				'id' => '',
-				'email' => $this->request->getVar('email'),
-				'password' => $this->request->getVar('password'),
-				'name' => '',
-				'isLoggedIn' => FALSE
-			);
-			if (!($userRow = $usersModel->isAuthenticated($user))) {
-				$session->setFlashdata('loginFail', ' Incorrect username (your e-mail) or password.');
-				return redirect()->to('/');
-			} else {
-				print_r($userRow['user_id']);
-				//$orders_model = new OrdersModel();
-				$user['isLoggedIn'] = TRUE;
-				$user['id'] = $userRow['user_id'];
-				$user['name'] = $userRow['name'];
-				//$data['orders'] = $orders_model->getOrdersbyCustomer($data['id']);
-				$session->set($user);
-			}
-		
+		$data['isLoggedIn'] = FALSE;
+		$data['name'] = "";
+		$data['email'] = "";
+		$data['password'] = "";
+		$session->set($data);
+		$session->destroy();
+		return redirect()->to('/');
 	}
 }

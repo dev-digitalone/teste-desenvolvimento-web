@@ -23,7 +23,7 @@
         }
     </style>
 </head>
-
+<?php $mysession = session()->get('name'); print_r($mysession);?>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -33,12 +33,17 @@
             </button>
             <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item"><a href="#" class="nav-link">Publicações</a></li>
+                    <li class="nav-item">
+                        <a href="<?= base_url() ?>/dashboard" class="nav-link <?=session()->get('name') ? null: 'disabled' ?>">Publicações</a>
+                    </li>
                     <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
                     <li class="nav-item"><a href="<?= base_url() ?>/contact" class="nav-link">Contato</a></li>
                 </ul>
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                    <button type="button" data-toggle="modal" data-target="#modalLoginForm" class="btn btn-outline-primary dropdown-toggle">Login <span class="caret"></span></button>
+                <?=session()->get('name') 
+                ? '<a type="button" href="'.base_url().'/logout" class="btn btn-outline-danger">Logout <span class="caret"></span></a>"'
+                : '<button type="button" data-toggle="modal" data-target="#modalLoginForm" class="btn btn-outline-primary">Login <span class="caret"></span></button>'
+                ?>
                 </ul>
             </div>
         </div>
@@ -99,7 +104,7 @@
 
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary btn-block" value="submit" >LOGIN</button>
+                        <button type="submit" class="btn btn-primary btn-block" value="submit">LOGIN</button>
                     </div>
                 </form>
                 <div class="form-group text-center">
