@@ -54,12 +54,14 @@
                                 <i class="fas fa-edit text-muted float-left p-1 my-1" data-toggle="tooltip" data-placement="top" title="Edit this post">
                                 </i>
                             </a>
-                            <a href="#!">
+                            <a data-toggle="modal" data-target="#modalDeletePost<?=$indice?>">
                                 <i class="fas fa-trash text-muted float-left p-1 my-1" data-toggle="tooltip" data-placement="top" title="Remove this post">
                                 </i>
                             </a>
                             <!-- Modal Form Edit -->
                             <?= view('edit-post-form', ['indice' => $indice]) ?>
+                            <!-- Modal Delete Post -->
+                            <?= view('delete-post', ['indice' => $indice]) ?>
                         <?php endif; ?>
                         <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
                         <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>

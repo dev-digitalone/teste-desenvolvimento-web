@@ -39,6 +39,8 @@ $routes->add('contact', 'Dashboard::contact');
 $routes->add('dashboard', 'Posts::renderPosts');
 $routes->add('insertpost', 'Posts::insertPost');
 $routes->add('editpost/(:num)', 'Posts::editPost/$1');
+$routes->add('deletepost/(:num)','Posts::deletePost/$1');
+
 
 /**
  * --------------------------------------------------------------------
