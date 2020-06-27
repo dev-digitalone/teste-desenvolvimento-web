@@ -12,6 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <link rel="stylesheet" href="/teste-desenvolvimento-web/css/topo.css">
     <link rel="stylesheet" href="/teste-desenvolvimento-web/css/publicacao.css">
     <link rel="stylesheet" href="/teste-desenvolvimento-web/css/home.css">
+    <link rel="stylesheet" href="/teste-desenvolvimento-web/css/minhaConta.css">
 </head>
 
 <body>
@@ -26,9 +27,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
             <div class="itens-usuario pointer col-lg-3 col-md-4 col-sm-4">
                 <ul class="lista-itens-usuario">
-                    <li title="Nova publicação" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/add.png" /><a class="item" href="publicacao">Publicar</a></li>
-                    <li title="Informações da conta" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/user.png" /><a class="item" href="#">Minha conta</a></li>
-                    <li title="Minhas publicações" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/post.png" /><a class="item" href="minhasPublicacoes">Minhas publicações</a></li>
+                    <li title="Nova publicação" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/add.png" /><a class="item" href="/teste-desenvolvimento-web/publicacao">Publicar</a></li>
+                    <li title="Informações da conta" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/user.png" /><a class="item" href="/teste-desenvolvimento-web/minhaConta">Minha conta</a></li>
+                    <li title="Minhas publicações" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/post.png" /><a class="item" href="/teste-desenvolvimento-web/minhasPublicacoes">Minhas publicações</a></li>
                     <li title="Sair da conta" class="item-usuario pointer"><img class="item-icone" id="icone-menu-fechar" src="/teste-desenvolvimento-web/img/icones/sair.png" /><a class="item" href="/teste-desenvolvimento-web/login/logout">Sair</a></li>
                 </ul>
 

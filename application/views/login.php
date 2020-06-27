@@ -21,12 +21,12 @@
             </div>
         </div>
 
-        
-        <div id="section-login" id="#form-login" class="section-login form-login">
+
+        <div id="section-login" id="form-login" class="section-login form-login">
             <form method="post" id="form-logar" class="login-form" action="login/autenticar">
-            <?php if ($this->session->flashdata("danger")) : ?>
-            <p class="msg-erro"><?= $this->session->flashdata("danger") ?></p>
-        <?php endif ?>
+                <?php if ($this->session->flashdata("danger")) : ?>
+                    <p class="msg-erro"><?= $this->session->flashdata("danger") ?></p>
+                <?php endif ?>
                 <h1>Login</h1>
 
                 <div class="form-input">
@@ -37,10 +37,6 @@
                 <div class="form-input">
                     <input type="password" id="senha-login" name="senha-login" required>
                     <span data-placeholder="*Senha"></span>
-                </div>
-
-                <div class="texto-senha">
-                    <button data-toggle="modal" data-target="#modal-esqueci-senha" class="btn">Esqueci minha senha</button>
                 </div>
 
                 <button type="submit" class="login-btn">Entrar</button>
@@ -68,14 +64,6 @@
 
                 <input type="submit" class="login-btn cadastrar-btn"></input>
             </form>
-        </div>
-
-        <div class="modal" id="modal-esqueci-senha">
-            <div class="conteudo-modal">
-                <p>Insira seu e-mail</p>
-                <input type="email" id="email" name="recuperar-email" required>
-                <button type="submit" class="btn">Enviar</button>
-            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -19,6 +19,8 @@ class Login extends CI_Controller {
         $newdata = array(
             'nome' => $usuario['nome'],
             'id' => $usuario['id'],
+            'email' => $usuario['email'],
+            'senha' => $usuario['senha'],
         );
 
         $this->session->set_userdata($newdata);

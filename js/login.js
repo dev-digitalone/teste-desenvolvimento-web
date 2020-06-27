@@ -20,7 +20,7 @@ $(".texto-cadastrar").on("click", function() {
 });
 
 $(document).ready(function() {
-    var url = (window.location.origin + "/teste-desenvolvimento-web/usuario/novoUsuario")
+    var url = (window.location.origin + "/teste-desenvolvimento-web/usuario/novoUsuario");
 
     $('#form-cadastro').submit(function(e) {
         e.preventDefault();

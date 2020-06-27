@@ -22,4 +22,9 @@
 			 return $this->db->get('usuarios')->row_array();
 		}
 
+		public function update($id, $usuario){
+			$this->db->where('id', $id);
+			$this->db->update('usuarios', $usuario);
+		}
+
 	}
