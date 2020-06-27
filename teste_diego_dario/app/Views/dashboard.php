@@ -9,11 +9,6 @@
         color: #0d47a1 !important;
     }
 </style>
-<!-- Modal Form Post -->
-<?= view('post-form') ?>
-
-<!-- Modal Form Edit -->
-<?= view('edit-post-form') ?>
 
 <!-- Button Modal -->
 <div class="row mt-3" style="margin: 0 auto; display: flex; justify-content: center;">
@@ -23,7 +18,7 @@
 <!--Grid row-->
 <div class="row mb-4" style="margin: 0 auto; display: flex; justify-content: center;">
     <!--Grid column-->
-    <?php foreach ($posts as $post) : ?>
+    <?php foreach ($posts as $indice => $post) : ?>
         <div class="col-md-5 mb-5 mt-5 ml-2" id="<?= $post['post_id'] ?>">
             <!-- Card -->
             <div class="card promoting-card">
@@ -55,7 +50,7 @@
                         </p>
                         <!-- Button -->
                         <?php if ($post['email'] == session()->get('email')) : ?>
-                            <a data-toggle="modal" data-target="#modalEditForm">
+                            <a data-toggle="modal" data-target="#modalEditForm<?=$indice?>">
                                 <i class="fas fa-edit text-muted float-left p-1 my-1" data-toggle="tooltip" data-placement="top" title="Edit this post">
                                 </i>
                             </a>
@@ -63,6 +58,8 @@
                                 <i class="fas fa-trash text-muted float-left p-1 my-1" data-toggle="tooltip" data-placement="top" title="Remove this post">
                                 </i>
                             </a>
+                            <!-- Modal Form Edit -->
+                            <?= view('edit-post-form', ['indice' => $indice]) ?>
                         <?php endif; ?>
                         <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
                         <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>
@@ -72,6 +69,8 @@
             <!-- Card -->
         </div>
     <?php endforeach; ?>
+    <!-- Modal Form Post -->
+    <?= view('post-form') ?>
 </div>
 <!--Grid row-->
 <?= $this->endSection() ?>

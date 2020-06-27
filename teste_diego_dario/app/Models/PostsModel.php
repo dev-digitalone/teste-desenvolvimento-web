@@ -8,7 +8,7 @@ use Error;
 class PostsModel extends Model
 {
     protected $table = 'posts';
-    protected $primaryKey = 'posts_id';
+    protected $primaryKey = 'post_id';
     protected $allowedFields = ['title', 'description', 'img_url', 'created_at', 'author_id'];
   
     public function getPosts($id = null)
@@ -30,7 +30,8 @@ class PostsModel extends Model
 
     public function getPostById($id)
     {
-        $this->asArray()->where(['podt_id' => $id])->findAll();
+        return $this->asArray()->where(['post_id' => $id])->first();
+        
     }
     public function getPostsByUser($id)
     {

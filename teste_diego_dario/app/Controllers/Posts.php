@@ -14,6 +14,7 @@ class Posts extends Controller
 		$rules = [
 			'title' => 'required|min_length[3]|max_length[50]',
 			'description' => 'required|min_length[6]|max_length[50]',
+			'img_url' => 'required|min_length[3]|max_length[50]',
 		];
 
 		$postsModel = new PostsModel();
@@ -54,9 +55,31 @@ class Posts extends Controller
 
 	public function editPost($id)
 	{
+		$rules = [
+			'title' => 'required|min_length[3]|max_length[50]',
+			'description' => 'required|min_length[6]|max_length[50]',
+			'img_url' => 'required|min_length[3]|max_length[50]',
+		];
+
+		$session = \Config\Services::session();
 		$postsModel = new PostsModel();
-		$currentPostToEdit = $postsModel->getPostById($id);
-		var_dump($currentPostToEdit);
+
+		if (!$this->validate($rules)) {
+			$session->setFlashdata('postFail', ' Incorrect title or message.');
+			return redirect()->to('/dashboard');
+		}
+		
+		$newPost = array(
+			'title' => $this->request->getVar('title'),
+			'description' => $this->request->getVar('description'),
+			'img_url' => $this->request->getVar('img_url'),
+			'author_id' => $this->request->getVar('author_id')
+		);
+
+		$postsModel->updatePost(intval($id), $newPost);
+		$session->setFlashdata('messageRegisterOk', 'Edited Successfully');
+		
+		return redirect()->to('/dashboard');
 
 	}
 }
