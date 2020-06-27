@@ -1,11 +1,3 @@
-<?php if (\Config\Services::validation()->getErrors()) {
-?>
-    <div class="alert alert-danger" role="alert">
-        <?= \Config\Services::validation()->listErrors(); ?>
-    </div>
-<?php
-}
-?>
 <?= $this->extend('/common/default_layout') ?>
 <?= $this->section('content') ?>
 <!--Section: Register -->

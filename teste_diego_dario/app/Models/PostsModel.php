@@ -1,19 +1,21 @@
-<?php 
+<?php
 
 namespace App\Models;
+
 use CodeIgniter\Model;
+use Error;
 
 class PostsModel extends Model
 {
     protected $table = 'posts';
     protected $primaryKey = 'posts_id';
     protected $allowedFields = ['title', 'description', 'img_url', 'created_at', 'author_id'];
-
+  
     public function getPosts($id = null)
     {
-       if ($id == null) return $this->findAll(); 
-       
-       return $this->asArray()->where(['posts_id' => $id]);
+        if ($id == null) return $this->findAll();
+
+        return $this->asArray()->where(['posts_id' => $id]);
     }
 
     public function create($data)
@@ -21,11 +23,15 @@ class PostsModel extends Model
         return $this->insert($data);
     }
 
-    public function update($id, $data)
+    public function updatePost($id = null, $data = null)
     {
-        $this->update($id, $data);
+        if ($id != null && $data != null) return $this->update($id, $data);
     }
 
+    public function getPostById($id)
+    {
+        $this->asArray()->where(['podt_id' => $id])->findAll();
+    }
     public function getPostsByUser($id)
     {
         $this->asArray()->where(['author_id' => $id])->findAll();
@@ -33,6 +39,7 @@ class PostsModel extends Model
 
     public function destroy($id = null)
     {
-        if($id != null ) $this->delete($id);
+        if ($id != null) $this->delete($id);
     }
+   
 }

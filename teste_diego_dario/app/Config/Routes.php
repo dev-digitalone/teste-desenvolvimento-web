@@ -36,7 +36,9 @@ $routes->add('insertuser', 'Dashboard::insertUser');
 $routes->add('loginuser', 'Dashboard::loginUser');
 $routes->add('logout', 'Dashboard::logout');
 $routes->add('contact', 'Dashboard::contact');
-$routes->add('dashboard', 'Dashboard::dashboard');
+$routes->add('dashboard', 'Posts::renderPosts');
+$routes->add('insertpost', 'Posts::insertPost');
+$routes->add('editpost/(:num)', 'Posts::editPost/$1');
 
 /**
  * --------------------------------------------------------------------

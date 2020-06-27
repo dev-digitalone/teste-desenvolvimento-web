@@ -1,3 +1,5 @@
+<?php $mysession = session()->get('name'); ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -14,6 +16,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <title>Test CI Application - <?php echo $title; ?></title>
     <style>
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
         button:focus {
             outline: 0;
         }
@@ -23,7 +30,7 @@
         }
     </style>
 </head>
-<?php $mysession = session()->get('name'); print_r($mysession);?>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -32,53 +39,75 @@
                 &#9776;
             </button>
             <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav pills-success">
+                    <li class="nav-item"><a href="<?= base_url() ?>/" class="nav-link">Home</a></li>
                     <li class="nav-item">
-                        <a href="<?= base_url() ?>/dashboard" class="nav-link <?=session()->get('name') ? null: 'disabled' ?>">Publicações</a>
+                        <a href="<?= base_url() ?>/dashboard" class="nav-link <?= session()->get('name') ? null : 'disabled' ?>">Publicações</a>
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
                     <li class="nav-item"><a href="<?= base_url() ?>/contact" class="nav-link">Contato</a></li>
                 </ul>
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                <?=session()->get('name') 
-                ? '<a type="button" href="'.base_url().'/logout" class="btn btn-outline-danger">Logout <span class="caret"></span></a>"'
-                : '<button type="button" data-toggle="modal" data-target="#modalLoginForm" class="btn btn-outline-primary">Login <span class="caret"></span></button>'
-                ?>
+                    <?= session()->get('name')
+                        ? '<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-user"></i> ' . $mysession . ' </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                  <a class="dropdown-item" href="#">My Account</a>
+                  <a class="dropdown-item" href="' . base_url() . '/logout">Log out</a>
+                </div>
+              </li>
+                "'
+                        : '<button type="button" data-toggle="modal" data-target="#modalLoginForm" 
+                    class="btn btn-outline-primary">Login <span class="caret"></span></button>'
+                    ?>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Modal Login -->
+    <!-- Validation -->
     <?php
     if (\Config\Services::validation()->getErrors()) {
-    ?>
+        ?>
         <div class="alert alert-danger" role="alert">
             <?= \Config\Services::validation()->listErrors(); ?>
         </div>
-    <?php
+        <?php
     }
     ?>
 
-    <?php
+<?php
     if (session()->get('messageRegisterOk')) {
-    ?>
+        ?>
         <div class="alert alert-info" role="alert">
             <?php echo "<strong>" . session()->getFlashdata('messageRegisterOk') . "</strong>"; ?>
         </div>
-    <?php
+        <?php
     }
     ?>
 
-    <?php
+<?php
     if (session()->get('loginFail')) {
-    ?>
+        ?>
         <div class="alert alert-danger" role="alert">
-
+            
             <?php echo "<strong>" . session()->getFlashdata('loginFail') . "</strong>"; ?>
         </div>
-    <?php
+        <?php
     }
     ?>
+
+<?php
+    if (session()->get('postFail')) {
+        ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo "<strong>" . session()->getFlashdata('postFail') . "</strong>"; ?>
+        </div>
+        <?php
+    }
+    ?>
+    <!-- Modal Login -->
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -90,6 +119,7 @@
                 </div>
                 <form action="<?php echo base_url() ?>/loginuser" method="post">
                     <div class="modal-body mx-3">
+                        
                         <div class="md-form mb-5">
                             <i class="fas fa-envelope prefix grey-text"></i>
                             <input name="email" type="email" id="defaultForm-email" class="form-control validate">

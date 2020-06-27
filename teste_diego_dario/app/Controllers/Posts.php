@@ -4,40 +4,59 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\PostsModel;
+use App\Models\UsersModel;
 
-class Posts extends Controller 
+class Posts extends Controller
 {
-    public function index()
-	{
-		$data['title'] = 'Dashboard';
-		return view('dashboard', $data);
-    }
-    
-    public function inserPost()
+
+	public function insertPost()
 	{
 		$rules = [
 			'title' => 'required|min_length[3]|max_length[50]',
 			'description' => 'required|min_length[6]|max_length[50]',
-			'img_url' => 'required|min_length[2]|max_length[50]'
 		];
 
-		if (!$this->validate($rules)) return $this->index();
-        
 		$postsModel = new PostsModel();
-        $session = \Config\Services::session();
-        $user_id = $session->get('user_id');
+		$session = \Config\Services::session();
 
-        $newPost = array(
+		if (!$this->validate($rules)) {
+			$session->setFlashdata('postFail', ' Incorrect title or message.');
+			return redirect()->to('/dashboard');
+		}
+
+		$newPost = array(
 			'title' => $this->request->getVar('title'),
 			'description' => $this->request->getVar('description'),
-            'img_url' => $this->request->getVar('img_url'),
-            'author_id' => $user_id
+			'img_url' => $this->request->getVar('img_url'),
+			'author_id' => $this->request->getVar('author_id')
 		);
 
-        $user_id != null ?
-        $postsModel->create($newPost) : null;
+		$postsModel->create($newPost);
 
 		$session->setFlashdata('messageRegisterOk', 'Posted Successfully');
+		return redirect()->to('/dashboard');
+	}
 
-    }
+	public function renderPosts()
+	{
+		$postsModel = new PostsModel();
+
+		$posts = $postsModel
+			->select('*')
+			->join('users', 'users.user_id = posts.author_id')
+			->orderBy('posts.created_at', 'DESC')
+			->find();
+
+		$param = ['posts' => $posts, 'title' => 'Dashboard'];
+		
+		return view('dashboard', $param);
+	}
+
+	public function editPost($id)
+	{
+		$postsModel = new PostsModel();
+		$currentPostToEdit = $postsModel->getPostById($id);
+		var_dump($currentPostToEdit);
+
+	}
 }

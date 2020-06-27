@@ -2,9 +2,10 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Controller;
 use App\Models\UsersModel;
 
-class Dashboard extends BaseController
+class Dashboard extends Controller
 {
 	public function index()
 	{
