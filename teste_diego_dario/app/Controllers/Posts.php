@@ -49,7 +49,7 @@ class Posts extends Controller
 			->find();
 
 		$param = ['posts' => $posts, 'title' => 'Dashboard'];
-		
+
 		return view('dashboard', $param);
 	}
 
@@ -68,7 +68,7 @@ class Posts extends Controller
 			$session->setFlashdata('postFail', ' Incorrect title or message.');
 			return redirect()->to('/dashboard');
 		}
-		
+
 		$newPost = array(
 			'title' => $this->request->getVar('title'),
 			'description' => $this->request->getVar('description'),
@@ -78,8 +78,23 @@ class Posts extends Controller
 
 		$postsModel->updatePost(intval($id), $newPost);
 		$session->setFlashdata('messageRegisterOk', 'Edited Successfully');
-		
-		return redirect()->to('/dashboard');
 
+		return redirect()->to('/dashboard');
+	}
+
+	public function deletePost($id = null)
+	{
+		$postsModel = new PostsModel();
+		$session = \Config\Services::session();
+
+		if ($id == null) {
+			$session->setFlashdata('postFail', 'Incorrect id.');
+			return redirect()->to('/dashboard');
+		}
+
+		$postsModel->destroy($id);
+		$session->setFlashdata('messageRegisterOk', 'Deleted Successfully');
+
+		return redirect()->to('/dashboard');
 	}
 }

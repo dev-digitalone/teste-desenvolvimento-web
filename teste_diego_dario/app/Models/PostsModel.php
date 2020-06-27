@@ -38,9 +38,9 @@ class PostsModel extends Model
         $this->asArray()->where(['author_id' => $id])->findAll();
     }
 
-    public function destroy($id = null)
+    public function destroy($id)
     {
-        if ($id != null) $this->delete($id);
+        $this->delete($id);
     }
    
 }
