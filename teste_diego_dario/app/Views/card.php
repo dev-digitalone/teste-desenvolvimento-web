@@ -4,7 +4,7 @@
         <!-- Card content -->
         <div class="card-body d-flex flex-row">
             <!-- Avatar -->
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
+            <img src="<?=$post['avatar']?>" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
             <!-- Content -->
             <div>
                 <!-- Title -->

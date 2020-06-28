@@ -22,7 +22,7 @@
                         <label data-error="wrong" data-success="right" for="description">Sua Mensagem</label>
                     </div>
 
-                    <input type="hidden" id="img_url" name="img_url" value="http://lorempixel.com/600/400/abstract">
+                    <input type="hidden" id="img_url" name="img_url" value="http://lorempixel.com/600/400/sports">
                     <input type="hidden" id="author_id" name="author_id" value="<?= session('id'); ?>">
 
                 </div>

@@ -49,7 +49,8 @@ class Users extends Controller
 		$user = array(
 			'name' => $this->request->getVar('name'),
 			'email' => $this->request->getVar('email'),
-			'password' => md5($this->request->getVar('password'))
+			'password' => md5($this->request->getVar('password')),
+			'avatar' => $this->request->getVar('avatar')
 		);
 
 		$usersModel->create($user);
@@ -162,8 +163,8 @@ class Users extends Controller
 		$config['SMTPHost'] = 'smtps.bol.com.br';
 		$config['SMTPUser'] = 'devtest@bol.com.br';
 		$config['SMTPPass'] = 'fRQSLLJcxa4@KGe';
-		$config['SMTPPort'] = '465';
-		$config['SMTPCrypto'] = 'ssl';
+		$config['SMTPPort'] = '587';
+		$config['newline'] = "\r\n";
 
 		$email->initialize($config);
 

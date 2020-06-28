@@ -24,6 +24,7 @@
                     <label for="password"><h5>Secret Password</h5></label>
                 </div>
             </div>
+            <input type="hidden" id="avatar" name="avatar" value="https://ramcotubular.com/wp-content/uploads/default-avatar.jpg">
 
         </div>
         <button type="submit" class="btn btn-primary col-md-2" name="submit">Submit</button>
