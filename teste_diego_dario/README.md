@@ -12,7 +12,6 @@ then
 `php spark serve`.
 
 ## Setup
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+Copy `env` to `.env`.
 
 
