@@ -62,27 +62,34 @@ if(isset($_POST['passwordResetBtn'])){
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="UTF-8">
-    <title>Resetar Senha</title>
-</head>
-<body>
-<h2>Autenticação </h2><hr>
+<?php $page_title = "Resetar Senha";
+include_once 'partials/header.php';
+?>
 
-<h3>Formulário de nova senha</h3>
+<div class="container" style="margin-top: 50px;">
+  <section class="col col-lg-7">
+  <h2>Formulário para Resetar Senha</h2>
+  <?php if(isset($result)) echo $result; ?>
+  <?php if(!empty($form_errors)) echo show_errors($form_errors);?>
 
-<?php if(isset($result)) echo $result; ?>
-<?php if(!empty($form_errors)) echo show_errors($form_errors); ?>
-<form method="post" action="">
-    <table>
-        <tr><td>Email</td> <td><input type="text" value="" name="email"></td></tr>
-        <tr><td>Nova Senha</td> <td><input type="password" value="" name="new_password"></td></tr>
-        <tr><td>Confirme Senha</td> <td><input type="password" value="" name="confirm_password"></td></tr>
-        <tr><td></td><td><input type="submit" name="passwordResetBtn" value="Resetar Senha"></td></tr>
-    </table>
+  <form action="" method="post">
+  <div class="form-group">
+    <label for="emailField">Email</label>
+    <input type="text" class="form-control" name="email" id="emailField" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="newPasswordField">Nova Senha</label>
+    <input type="password" class="form-control" name="new_password" id="newPasswordField" placeholder="Nova Senha">
+  </div>
+  <div class="form-group">
+    <label for="confirmPasswordField">Confirmar Senha</label>
+    <input type="confirm_password" class="form-control" name="confirm_password" id="confirmPasswordField" placeholder="Confirmar Senha">
+  </div>
+  <button type="submit" name="passwordResetBtn" class="btn btn-primary" style="margin-left: 550px;">Enviar</button>
 </form>
-<p><a href="index.php">Back</a> </p>
-</body>
-</html>
+
+  </section>
+</div>
+    
+
+<?php include_once 'partials/footer.php';?>
