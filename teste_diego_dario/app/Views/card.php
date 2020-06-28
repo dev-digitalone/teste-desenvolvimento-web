@@ -30,11 +30,11 @@
                 <!-- Button -->
                 <?php if ($post['email'] == session()->get('email')) : ?>
                     <a data-toggle="modal" data-target="#modalEditForm<?= $indice ?>">
-                        <i class="fas fa-edit text-muted float-left p-1 my-1" data-toggle="tooltip" data-placement="top" title="Edit this post">
+                        <i class="icon-edit fas fa-edit text-muted float-left p-1 my-1" data-toggle="tooltip" data-placement="top" title="Edit this post">
                         </i>
                     </a>
                     <a data-toggle="modal" data-target="#modalDeletePost<?= $indice ?>">
-                        <i class="fas fa-trash text-muted float-left p-1 my-1" data-toggle="tooltip" data-placement="top" title="Remove this post">
+                        <i class="icon-trash fas fa-trash text-muted float-left p-1 my-1" data-toggle="tooltip" data-placement="top" title="Remove this post">
                         </i>
                     </a>
                     <!-- Modal Form Edit -->

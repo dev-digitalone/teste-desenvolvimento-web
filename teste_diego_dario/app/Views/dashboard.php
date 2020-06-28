@@ -1,14 +1,6 @@
 <?= $this->extend('/common/default_layout') ?>
 <?= $this->section('content') ?>
-<style>
-    .collapse-content .fa.fa-heart:hover {
-        color: #f44336 !important;
-    }
 
-    .collapse-content .fa.fa-share-alt:hover {
-        color: #0d47a1 !important;
-    }
-</style>
 
 <!-- Button Modal -->
 <div class="row mt-3" style="margin: 0 auto; display: flex; justify-content: center;">

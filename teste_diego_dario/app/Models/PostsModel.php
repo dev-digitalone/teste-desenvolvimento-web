@@ -35,12 +35,12 @@ class PostsModel extends Model
     }
     public function getPostsByUser($id)
     {
-        $this->asArray()->where(['author_id' => $id])->findAll();
+        return $this->asArray()->where(['author_id' => $id])->findAll();
     }
 
     public function destroy($id)
     {
-        $this->delete($id);
+        return $this->delete($id);
     }
    
 }

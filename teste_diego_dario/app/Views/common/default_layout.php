@@ -1,30 +1,5 @@
 <?php $mysession = session()->get('name'); ?>
 
-<!-- Validation -->
-<?php if (\Config\Services::validation()->getErrors()) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?= \Config\Services::validation()->listErrors(); ?>
-    </div>
-<?php endif; ?>
-
-<?php if (session()->get('messageRegisterOk')) : ?>
-    <div class="alert alert-info" role="alert">
-        <?php echo "<strong>" . session()->getFlashdata('messageRegisterOk') . "</strong>"; ?>
-    </div>
-<?php endif; ?>
-
-<?php if (session()->get('loginFail')) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?php echo "<strong>" . session()->getFlashdata('loginFail') . "</strong>"; ?>
-    </div>
-<?php endif; ?>
-
-<?php if (session()->get('postFail')) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?php echo "<strong>" . session()->getFlashdata('postFail') . "</strong>"; ?>
-    </div>
-<?php endif; ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -52,6 +27,14 @@
 
         .navbar .dropdown-menu .form-control {
             width: 200px;
+        }
+
+        .icon-trash:hover {
+            color: #f44336 !important;
+        }
+
+        .icon-edit:hover {
+            color: #0d47a1 !important;
         }
     </style>
 </head>
@@ -83,6 +66,32 @@
             </div>
         </div>
     </nav>
+    
+    <!-- Validation -->
+    <?php if (\Config\Services::validation()->getErrors()) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= \Config\Services::validation()->listErrors(); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (session()->get('messageRegisterOk')) : ?>
+        <div class="alert alert-info" role="alert">
+            <?php echo "<strong>" . session()->getFlashdata('messageRegisterOk') . "</strong>"; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (session()->get('loginFail')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo "<strong>" . session()->getFlashdata('loginFail') . "</strong>"; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (session()->get('postFail')) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo "<strong>" . session()->getFlashdata('postFail') . "</strong>"; ?>
+        </div>
+    <?php endif; ?>
+
     <!-- Modal Login-->
     <?= view('common/login') ?>
 

@@ -32,7 +32,7 @@
                     <a href="<?php echo base_url() ?>/registration">Register here</a>
                 </div>
                 <div class="form-group text-center">
-                    <a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a>
+                    <a href="<?php echo base_url() ?>/forgotpassword">Forgot password?</a>
                 </div>
             </div>
         </div>

@@ -99,4 +99,46 @@ class Users extends Controller
 		$session->destroy();
 		return redirect()->to('/');
 	}
+
+	public function forgotPassword()
+	{
+		$data['title'] = 'ForgotPass';
+		return view('forgotpass', $data);
+	}
+
+	public function emailExists($email)
+	{
+		$usersModel = new UsersModel();
+		$user = $usersModel->getByEmail($email);	
+		return $user ? true : false;
+	}
+
+	public function resetlink()
+	{
+		$session = \Config\Services::session();
+		$email = $this->request->getVar('email');
+
+		$rules = [
+			'email' => 'trim|required|min_length[6]|max_length[50]|valid_email',
+		];
+
+		if(!$this->validate($rules)) {
+			$session->setFlashdata('loginFail', 'Incorrect please supply a valid email address.');
+			return redirect()->to('/forgotpassword');
+		}
+
+		if (!$this->emailExists($email))	{
+			$session->setFlashdata('loginFail', ' Incorrect email or (your e-mail is not registered).');
+			return redirect()->to('/forgotpassword');
+		}
+
+		$rng = rand(1000, 9999);
+		$message = "Please clik on password link below to retrieve your credentials <br>
+		<a href='".base_url('reset?tokan=').$rng.">Reset Link </a>";
+
+		$session->setFlashdata('messageRegisterOk', $message);
+
+		$data['title'] = 'Link Reset Password';
+		echo($message);
+	}
 }
