@@ -36,7 +36,7 @@ $routes->add('insertuser', 'Users::insertUser');
 $routes->add('loginuser', 'Users::loginUser');
 $routes->add('logout', 'Users::logout');
 $routes->add('contact', 'Users::contact');
-$routes->add('dashboard', 'Posts::renderPosts');
+$routes->add('dashboard', 'Posts::renderPosts', ['filter' => 'authenticated']);
 $routes->add('insertpost', 'Posts::insertPost');
 $routes->add('editpost/(:num)', 'Posts::editPost/$1');
 $routes->add('deletepost/(:num)','Posts::deletePost/$1');

@@ -51,9 +51,7 @@ class Users extends Controller
 		);
 
 		$usersModel->create($user);
-
 		$session->setFlashdata('messageRegisterOk', 'Registered Successfully. Please, login.');
-
 		return redirect()->to('/');
 	}
 
@@ -82,11 +80,9 @@ class Users extends Controller
 			$session->setFlashdata('loginFail', ' Incorrect username (your e-mail) or password.');
 			return redirect()->to('/');
 		}
-		//$orders_model = new OrdersModel();
 		$user['isLoggedIn'] = TRUE;
 		$user['id'] = $userRow['user_id'];
 		$user['name'] = $userRow['name'];
-		//$data['orders'] = $orders_model->getOrdersbyCustomer($data['id']);
 		$session->set($user);
 		return redirect()->to('/dashboard');
 	}

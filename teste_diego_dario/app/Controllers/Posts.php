@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\PostsModel;
-use App\Models\UsersModel;
 
 class Posts extends Controller
 {
@@ -49,7 +48,6 @@ class Posts extends Controller
 			->find();
 
 		$param = ['posts' => $posts, 'title' => 'Dashboard'];
-
 		return view('dashboard', $param);
 	}
 
@@ -78,7 +76,6 @@ class Posts extends Controller
 
 		$postsModel->updatePost(intval($id), $newPost);
 		$session->setFlashdata('messageRegisterOk', 'Edited Successfully');
-
 		return redirect()->to('/dashboard');
 	}
 
@@ -94,7 +91,6 @@ class Posts extends Controller
 
 		$postsModel->destroy($id);
 		$session->setFlashdata('messageRegisterOk', 'Deleted Successfully');
-
 		return redirect()->to('/dashboard');
 	}
 }
