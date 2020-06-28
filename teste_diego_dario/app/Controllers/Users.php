@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\UsersModel;
 use App\Models\TokenUsersModel;
+use Error;
 
 class Users extends Controller
 {
@@ -143,23 +144,41 @@ class Users extends Controller
 		];
 
 		$tokenModel->create($user_token);
-		$this->sendEmail($user_token);
-		$session->setFlashdata('messageRegisterOk', 'Please check your email to reset yout password!');
+		
+		if ($this->sendEmail($user_token)) {
+			$session->setFlashdata('messageRegisterOk', 'Please check your email to reset your password!');
+			return redirect()->to('/forgotpassword');
+		}
+
+		$session->setFlashdata('loginFail', "Send email fail.");
+		//return redirect()->to('/forgotpassword');
 	}
 
 	public function sendEmail($token)
 	{
 		$email = \Config\Services::email();
-		$message = 'Clink this link to reset your password:<a href="'. base_url(). '/changepassword?email='.urlencode($token['email']).'&token='.urlencode($token['token']).'>
-		Reset Password
-		</a>';
 
-		$email->setFrom('diegodario@rocketmail.com', 'Diego Dario');
+		$config['protocol'] = 'smtp';
+		$config['SMTPHost'] = 'smtps.bol.com.br';
+		$config['SMTPUser'] = 'devtest@bol.com.br';
+		$config['SMTPPass'] = 'fRQSLLJcxa4@KGe';
+		$config['SMTPPort'] = '465';
+		$config['SMTPCrypto'] = 'ssl';
+
+		$email->initialize($config);
+
+		$message = 'Clink this link to reset your password:<a href="' 
+		. base_url() . '/changepassword?email=' 
+		. urlencode($token['email']) . '&token=' . urlencode($token['token']) . '>
+			Reset Password
+			</a>';
+
+		$email->setFrom('devtest@bol.com.br', 'Dev CI 4 Test App');
 		$email->setTo($token['email']);
 		$email->setSubject('Reset Link');
 		$email->setMessage($message);
-			
-		var_dump($message);
+
 		$email->send();
+		echo $email->printDebugger();
 	}
 }
