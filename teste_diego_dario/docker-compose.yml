@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  mysqldb:
+  db:
     image: mysql:latest
     build: ./app/Database
     container_name: mysql
