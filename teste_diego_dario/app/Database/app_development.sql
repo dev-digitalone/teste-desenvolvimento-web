@@ -52,6 +52,15 @@ CREATE TABLE `users` (
   `password` varchar(245) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
+DROP TABLE IF EXISTS `token_users`;
+
+CREATE TABLE `token_users` (
+  `token_id` int(11) NOT NULL,
+  `email` varchar(245) NOT NULL,
+  `token` varchar(245) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB DEFAULT CHARSET = latin1;
+
 --
 -- Índices de tabelas apagadas
 --

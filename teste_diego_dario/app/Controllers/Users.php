@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\UsersModel;
+use App\Models\TokenUsersModel;
 
 class Users extends Controller
 {
@@ -109,36 +110,56 @@ class Users extends Controller
 	public function emailExists($email)
 	{
 		$usersModel = new UsersModel();
-		$user = $usersModel->getByEmail($email);	
+		$user = $usersModel->getByEmail($email);
 		return $user ? true : false;
 	}
 
 	public function resetlink()
 	{
 		$session = \Config\Services::session();
+		$encrypter = \Config\Services::encrypter();
+		$tokenModel = new TokenUsersModel();
 		$email = $this->request->getVar('email');
 
 		$rules = [
 			'email' => 'trim|required|min_length[6]|max_length[50]|valid_email',
 		];
 
-		if(!$this->validate($rules)) {
+		if (!$this->validate($rules)) {
 			$session->setFlashdata('loginFail', 'Incorrect please supply a valid email address.');
 			return redirect()->to('/forgotpassword');
 		}
 
-		if (!$this->emailExists($email))	{
-			$session->setFlashdata('loginFail', ' Incorrect email or (your e-mail is not registered).');
+		if (!$this->emailExists($email)) {
+			$session->setFlashdata('loginFail', "Incorrect email  or (your e-mail is not registered).");
 			return redirect()->to('/forgotpassword');
 		}
 
-		$rng = rand(1000, 9999);
-		$message = "Please clik on password link below to retrieve your credentials <br>
-		<a href='".base_url('reset?tokan=').$rng.">Reset Link </a>";
+		$token = $encrypter->encrypt(random_bytes(32));
 
-		$session->setFlashdata('messageRegisterOk', $message);
+		$user_token = [
+			'email' => $email,
+			'token' => $token,
+		];
 
-		$data['title'] = 'Link Reset Password';
-		echo($message);
+		$tokenModel->create($user_token);
+		$this->sendEmail($user_token);
+		$session->setFlashdata('messageRegisterOk', 'Please check your email to reset yout password!');
+	}
+
+	public function sendEmail($token)
+	{
+		$email = \Config\Services::email();
+		$message = 'Clink this link to reset your password:<a href="'. base_url(). '/changepassword?email='.urlencode($token['email']).'&token='.urlencode($token['token']).'>
+		Reset Password
+		</a>';
+
+		$email->setFrom('diegodario@rocketmail.com', 'Diego Dario');
+		$email->setTo($token['email']);
+		$email->setSubject('Reset Link');
+		$email->setMessage($message);
+			
+		var_dump($message);
+		$email->send();
 	}
 }

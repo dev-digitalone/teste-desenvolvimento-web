@@ -21,7 +21,7 @@ class Encryption extends BaseConfig
 	  | See the user guide for more info.
 	 */
 
-	public $key = '';
+	public $key = 'AXvsbDgV2KPBBnFDj13AiYYC04kuQEZVWleCP6P7cMqfkSknf75+XOR8wGijU5iZLfDWKpwpgNtvEgP61NV1XsQA1+fljKihH/pvxsazkM4YgJen2J3ZsfUZnz4sGUjAZPVtTUSc1nwRJWAmBL3Eu05iYXvLzdwbDSzqAYTGVT5Y8qrUUrSR0uQ/xCS6zJ7XkWelNCm/9R4xXBUGVebxGMCNOoUX5n2nTUU+WVl4vR1VYcWRU5/yyb5NqtGb6tq+MGa329j7ANYEFsPVsmFyDgcM0Rlarg7odpURREb80vaTsdBvWK5WGBJHp12hB1XHhb8jvMKuAOpcZ08XNFTIg==';
 
 	/*
 	  |--------------------------------------------------------------------------

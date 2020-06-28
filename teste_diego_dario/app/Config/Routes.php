@@ -40,6 +40,7 @@ $routes->add('logout', 'Users::logout');
 $routes->add('contact', 'Users::contact');
 $routes->add('forgotpassword', 'Users::forgotPassword');
 $routes->add('resetlink', 'Users::resetlink');
+$routes->add('changepassword', 'Users::changePassword');
 
 //Posts
 $routes->add('dashboard', 'Posts::renderPosts', ['filter' => 'authenticated']);
