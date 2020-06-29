@@ -83,7 +83,7 @@ include_once 'partials/header.php';
   </div>
   <div class="form-group">
     <label for="confirmPasswordField">Confirmar Senha</label>
-    <input type="confirm_password" class="form-control" name="confirm_password" id="confirmPasswordField" placeholder="Confirmar Senha">
+    <input type="password" class="form-control" name="confirm_password" id="confirmPasswordField" placeholder="Confirmar Senha">
   </div>
   <button type="submit" name="passwordResetBtn" class="btn btn-primary" style="margin-left: 550px;">Enviar</button>
 </form>
