@@ -20,4 +20,4 @@ services:
       ports:
        - '8081:80'
       environment:
-        PMA_HOST: mysqldb
+        PMA_HOST: db
