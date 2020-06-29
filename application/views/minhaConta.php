@@ -28,7 +28,7 @@
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div id="redefinir-senha-conteudo" class="redefinir-senha-conteudo">
-                        <form method="post" id="redefinir-senha" class="conteudo-form" action="minhaConta/redefineSenha">
+                        <form method="post" id="redefinir-senha" class="conteudo-form">
                             <h1>Insira sua nova senha</h1>
 
                             <div class="form-input">
@@ -37,15 +37,10 @@
                             </div>
 
                             <div class="form-input">
-                                <input type="password" id="confirma-senha-login" name="confirma-senha-login" required>
+                                <input type="password" id="confirma-senha" name="confirma-senha" required>
                                 <span data-placeholder="*Confirme sua senha"></span>
                             </div>
-
-                            <input type="hidden" id="id" name="id" value="<?php echo $this->session->id ?>">
-                            <input type="hidden" id="nome" name="nome" value="<?php echo $this->session->nome ?>">
-                            <input type="hidden" id="email" name="email" value="<?php echo $this->session->email ?>">
-
-                            <button type="submit" class="confirmar-btn">Redefinir</button>
+                            <button title="As duas senhas devem ser iguais" type="submit" class="confirmar-btn redefinir-btn">Redefinir</button>
                         </form>
                     </div>
                 </div>
@@ -56,18 +51,13 @@
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div id="redefinir-nome" class="redefinir-nome">
-                        <form method="post" id="redefinir-nome" class="conteudo-form" action="minhaConta/editUsuario">
+                        <form method="post" id="redefinir-nome" class="conteudo-form" action="minhaConta/editNome">
                             <h1>Insira o nome desejado</h1>
 
                             <div class="form-input">
                                 <input type="text" id="nome" name="nome" required>
                                 <span data-placeholder="*Nome"></span>
                             </div>
-
-                            <input type="hidden" id="id" name="id" value="<?php echo $this->session->id ?>">
-                            <input type="hidden" id="senha" name="senha" value="<?php echo $this->session->senha ?>">
-                            <input type="hidden" id="email" name="email" value="<?php echo $this->session->email ?>">
-
                             <button type="submit" class="confirmar-btn">Redefinir</button>
                         </form>
                     </div>
@@ -78,19 +68,14 @@
         <div class="modal fade modal-email" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
-                    <div id="redefinir-email" class="redefinir-email" action="minhaConta/editUsuario">
-                        <form method="post" id="redefinir-email" class="conteudo-form" action="minhaConta/editUsuario">
+                    <div id="conteudo-redefinir-email" class="conteudo-redefinir-email">
+                        <form method="post" id="redefinir-email" class="conteudo-form">
                             <h1>Insira o e-mail desejado</h1>
 
                             <div class="form-input">
                                 <input type="email" id="email" name="email" required>
                                 <span data-placeholder="*E-mail"></span>
                             </div>
-
-                            <input type="hidden" id="id" name="id" value="<?php echo $this->session->id ?>">
-                            <input type="hidden" id="senha" name="senha" value="<?php echo $this->session->senha ?>">
-                            <input type="hidden" id="nome" name="nome" value="<?php echo $this->session->nome ?>">
-
                             <button type="submit" class="confirmar-btn">Redefinir</button>
                         </form>
                     </div>
@@ -106,9 +91,8 @@
                             <h1>Selecione a imagem desejada</h1>
 
                             <div class="form-input">
-                            <input name="foto" type="file" class="input-foto" id="foto" accept="image/*">
-                            <label class="label-foto" for="foto">Arquivo</label>
-                            <input type="hidden" id="id" name="id" value="<?php echo $this->session->id ?>">
+                                <input name="foto" type="file" class="input-foto" id="foto" accept="image/*">
+                                <label class="label-foto" for="foto">Arquivo</label>
                             </div>
 
                             <button type="submit" class="confirmar-btn">Redefinir</button>

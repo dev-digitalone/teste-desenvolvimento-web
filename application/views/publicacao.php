@@ -7,8 +7,6 @@
 
             <label class="form-txt" for="form-txt">Conteúdo</label>
             <textarea type="text" id="conteudo" name="conteudo" class="conteudo row col-12 campo"></textarea>
-            <input type="hidden" id="nomeUsuario" name="nomeUsuario" value=<?php echo($this->session->nome) ?> />
-            <input type="hidden" id="idUsuario" name="idUsuario" value=<?php echo($this->session->id) ?> />
             <div class="botoes row">
                 <input type="submit" id="publicar" name="publicar" class="btn btn-publicar" />
                 <a class="btn btn-voltar" href="/teste-desenvolvimento-web/home">Voltar para todas as publicações</a>

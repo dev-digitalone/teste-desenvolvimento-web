@@ -4,4 +4,5 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/teste-desenvolvimento-web/js/topo.js"></script>
     <script src="/teste-desenvolvimento-web/js/publicacao.js"></script>
+    <script src="/teste-desenvolvimento-web/js/minhaConta.js"></script>
 </body>

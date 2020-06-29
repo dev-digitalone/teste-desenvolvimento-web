@@ -66,3 +66,12 @@
 .texto-publicacao {
     padding-top: 15px;
 }
+
+.img-publicacao {
+    margin-top: 20px;
+    background-size: contain;
+    height: 300px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}

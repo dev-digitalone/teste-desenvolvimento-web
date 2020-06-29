@@ -4,13 +4,13 @@
     <?php foreach (array_reverse($publicacoes) as $publicacao) { ?>
         <div class="dados-publicacao">
             <div class="usuario-publicacao">
-            <p class="conteudo-usuario"> <?php echo ($publicacao['nomeUsuario']); ?> publicou:
+                <p class="conteudo-usuario"> <?php echo ($publicacao['nomeUsuario']); ?> publicou:
                     <?php if ($publicacao['editado'] == 1) { ?>
                         (Editado)
                 </p>
-                    <?php }?>
-                <?php $data = date('d/m/y H:i', strtotime($publicacao['data']));?>
-                <p class="conteudo-data"> <?php echo ($data); ?></p>
+            <?php } ?>
+            <?php $data = date('d/m/y H:i', strtotime($publicacao['data'])); ?>
+            <p class="conteudo-data"> <?php echo ($data); ?></p>
             </div>
 
             <div class="textos-publicacao">
@@ -22,6 +22,11 @@
                     <p class="conteudo-texto"> <?php echo ($publicacao['conteudo']); ?></p>
                 </div>
             </div>
+            <?php if (!empty($publicacao['fotoAnexo'])) { ?>            
+            <div class="anexo-publicacao">
+                <div class="img-publicacao" style="background-image: url('/teste-desenvolvimento-web/img/anexos-pub/<?php echo $publicacao['fotoAnexo'] ?>');"></div>
+            </div>
+            <?php }?>
         </div>
     <?php } ?>
 

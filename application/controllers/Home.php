@@ -7,6 +7,8 @@ class Home extends CI_Controller {
 	{	
 		$this->load->model("publicacao_model");
 		$publicacoes = $this->publicacao_model->buscarTodas();
+
+		$pesquisa = $this->input->post("pesquisa");
 		$dadosPublicacoes = array("publicacoes" => $publicacoes);
 
 		if ($this->session->userdata("usuario_logado")){

@@ -28,3 +28,8 @@ $(document).ready(function() {
         });
     });
 });
+
+function pergunta() {
+    // retorna true se confirmado, ou false se cancelado
+    return confirm('Tem certeza que quer deletar a publicação?');
+}

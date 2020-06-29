@@ -1,5 +1,5 @@
 <div class="conteudo-home container">
-    <h1 class="home-titulo">Minhas publicações</h1>
+    <h1 class="home-titulo">Publicações</h1>
 
     <?php foreach (array_reverse($publicacoes) as $publicacao) { ?>
         <div class="dados-publicacao">

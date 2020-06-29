@@ -35,4 +35,18 @@
 			header("Location: /teste-desenvolvimento-web/minhasPublicacoes");
 		}
 
+		public function deletar_publicacao($id)
+		{
+			$this->db->where('id', $id);
+			$this->db->delete('publicacoes');
+			return TRUE;
+		}
+
+		public function pesquisarPublicacao($pesquisa){
+			$this->db->select(" * from publicacoes where idUsuario like '".$pesquisa."%' OR nomeUsuario like '".$pesquisa."%'"); 
+			$query = $this->db->get();
+
+			return $query->result_array();
+		}
+
 	}
