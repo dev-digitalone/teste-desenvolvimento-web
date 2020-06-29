@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:latest
+    build: ./app/Database
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app_development
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass
+    ports:
+      - 3306:3306
+  app:
+      depends_on:
+       - db
+      image: phpmyadmin/phpmyadmin:latest
+      container_name: phpmyadmin
+      restart: always
+      ports:
+       - '8081:80'
+      environment:
+        PMA_HOST: db
