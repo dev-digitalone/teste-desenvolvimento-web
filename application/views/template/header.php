@@ -23,11 +23,15 @@
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
                         <ul class="nav navbar-nav">
+                            <?php if(!empty($this->session->email)):?>
+                            <li <?php echo (!empty($title) && $title == 'Gerenciar Usuários') ? 'class="active"' : '';?>><a href="<?php echo base_url('panel/user_list');?>">Gerenciar Usuários</a></li>
+                            <li <?php echo (!empty($title) && $title == 'Gerenciar Publicações') ? 'class="active"' : '';?>><a href="<?php echo base_url('panel/post_list');?>">Gerenciar Publicações</a></li>
+                            <li><a href="<?php echo base_url('login/logout');?>">Sair</a></li>
+                            <?php elseif(empty($this->session->email)):?>
                             <li <?php echo (!empty($title) && $title == 'Registrar') ? 'class="active"' : '';?>><a href="<?php echo base_url('register');?>">Registrar</a></li>
                             <li <?php echo (!empty($title) && $title == 'Login') ? 'class="active"' : '';?>><a href="<?php echo base_url('login');?>">Login</a></li>
-                            <?php if(!empty($logged) && $logged == true):?>
-                                <li><a href="<?php echo base_url('login/logout');?>">Sair</a></li>
                             <?php endif;?>
+                            
                         </ul>
                     </div>
                 </div>

@@ -16,9 +16,14 @@
          <input type="password" name="password" class="form-control" value="<?php echo set_value('password'); ?>" />
          <span class="text-danger"><?php echo form_error('password'); ?></span>
       </div>
+      <div class="input-group">
+         <label>Confirme sua senha</label>
+         <input type="password" name="passconf" class="form-control" value="<?php echo set_value('password'); ?>" />
+         <span class="text-danger"><?php echo form_error('passconf'); ?></span>
+      </div>
       <br/>
       <div class="input-group">
-         <input type="submit" name="register" value="Cadastrar" class="btn btn-info" />
+         <input type="submit" name="register" value="Cadastrar" class="btn btn-default" />
       </div>
    </form>
 </div>

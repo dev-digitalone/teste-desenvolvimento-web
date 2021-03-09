@@ -2,8 +2,9 @@
 
 class Login extends CI_Controller {
    public function __construct() {
-       parent::__construct();
-       $this->load->model('users_model'); 
+        parent::__construct();
+        //$this->load->model('users_model'); 
+        $this->load->model('session_model');
    } 
 
    public function index() {
@@ -24,13 +25,16 @@ class Login extends CI_Controller {
 
             $email = $this->input->post('email');
             $pass = $this->input->post('pass');
+            $user_id = $this->session_model->verify_login($email, $pass);
 
-            if($this->users_model->verify_login($email, $pass)) {
+            if(!empty($user_id)) {
 
                 $session_data = array(
-                    'email' => $email
+                    'email' => $email,
+                    'id' => $user_id
                 );
 
+                //$this->session->unset_userdata(array('error', 'message'));
                 $this->session->set_userdata($session_data);
                 redirect(base_url());
             } else {
@@ -41,7 +45,13 @@ class Login extends CI_Controller {
    }
 
    public function logout() {
-      $this->session->unset_userdata('email');
+      //$session_items = array(
+      //     'email',
+           //'error',
+           //'message' 
+      // );
+      //$this->session->unset_userdata($session_items);
+      $this->session->sess_destroy();
       redirect(base_url('login'));
    }
 }

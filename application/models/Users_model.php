@@ -5,26 +5,9 @@ class Users_model extends CI_Model {
         //$this->load->database();
     }
 
-    public function verify_session() {
-        if(!empty($_SESSION['email'])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function verify_login($email, $password) {
-        $this->db->where('email', $email);
-        $query = $this->db->get('Users');
-        $result = $query->result_array();
-        if(!empty($result)) {
-            $encrypted_passoword = $result[0]['password'];
-            if($this->encryption->decrypt($encrypted_passoword) == $password) {
-                return true;
-            }
-        } else {
-            return false;
-        }
+    public function isEmailRegistred($mail) {
+       $query = $this->db->get_where('Users', array('email' => $mail));
+       return $query->row_array();
     }
 
     public function register($data) {
@@ -39,16 +22,20 @@ class Users_model extends CI_Model {
 
     public function getUser($id) {
         $query = $this->db->get_where('Users', array('id' => $id));
-        //return $query->result_array();
         return $query->row_array();
     }
 
-    public function edit($id) {
-       $data = array(
-           'name' => $this->input->post('name'),
-           'email' => $this->input->post('email'),
-           'password' => $this->encryption->encrypt($this->input->post('pass'))
-       ); 
+
+    public function edit($id, $data = array()) {
+
+        //só alterar os dados passados
+        if(empty($data)) {
+           $data = array(
+               'name' => $this->input->post('name'),
+               'email' => $this->input->post('email'),
+               'password' => $this->encryption->encrypt($this->input->post('pass'))
+           ); 
+        }
 
        $where = "id = $id";
 
