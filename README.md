@@ -1,79 +1,36 @@
-<h3 align="center">
-  <img alt="Digital One" src="https://user-images.githubusercontent.com/51726945/85145615-3326c600-b223-11ea-84bf-319fb54949b5.png" />
-</h3>
+<h1 align="center">
+    Projeto teste para desenvolvedor Web
+</h1>
 
-<br>
+# Desafio
 
-<h2 align="center">  
-  Teste para desenvolvedor Web
-</h2>
+<a href="./DESAFIO.md">Detalhes do desafio.</a>
 
-<br>
+## Recursos Utilizados
 
-A [Digital One](https://www.digitalone.com.br/) está sempre em busca de profissionais com boa capacidade de aprendizado e adaptação, mas principalmente motivação.
+### Back End
 
-Este teste tem como objetivo avaliar seus conhecimentos. Fique tranquilo, caso não consiga concluir o desafio no prazo estipulado, você deve envia-lo da maneira que estiver, pois iremos avaliar a qualidade do que foi desenvolvido. 
+- PHP (Versão 8.0)
+- CodeIgniter (Versão 3.1.11)
 
-## Desafio
+### Front End
 
-- O seu desafio será construir uma aplicação web para controle de publicações com login e recuperação de senha. 
+- Bootstrap (Versão 4.0)
+- HTML
+- CSS
+- Javascript
+- Jquery (Versão 3.3.1)
 
-<details>
+# Instruções de Instalação
 
-  <summary>Layout</summary>
-  - O layout ficará por sua conta, seja criativo e nos surpreenda!
-</details>
+## Banco de dados
 
-<details>
+Nesse projeto foi utilizado o banco de dados **MariaDB**, é uma versão para linux do **MySQL.**
 
-  <summary>Funcionalidades</summary>
-   - O Desafio deverá ter as seguintes funcionalidades:
-      
-   - Cadastro de usuários
-   - Recuperação de senha para usuários já cadastrados
-   - Login
-   - Publicações (Posts)
-     - Create
-     - Read
-     - Update
-     - Delete
-     - Index (Listagem)
-</details>
+O banco de dados deve ser configurado no arquivo **application/config/database.php**.
+Foi disponibilizado o arquivo **banco_de_dados.sql** que deve ser importado, para criação da tabela e inserção dos dados.
 
-<details>
-  <summary>Banco de dados</summary>
+## Recuperação de senha
 
-  - O banco de dados a ser utilizado também poderá ser de sua escolha.
+Para funcionar corretamente pode ser necessário configurar o arquivo **application/config/email.php**
 
-  - Você deverá criar as seguintes tabelas no seu banco de dados:
-
-    - Users
-      - O usuário terá as seguintes colunas:
-        - name: `VARCHAR(245)`
-        - email: `VARCHAR(245)`
-        - password: `VARCHAR(245)` **deverá ser criptografado**
-
-    - Posts
-      - As publicações terão as seguintes colunas:
-        - title: `VARCHAR(245)`
-        - description: `VARCHAR(245)`
-        - img_url: `VARCHAR(245)`
-          - **Não será obrigatório o upload de imagens**, poderá ser cadastrado somente com a URL da mesma.
-        - created_at: `TIMESTAMP`
-        - author: `Criar uma FK (foreign key) para relacionamento com usuário`
-</details>
-
-## Regras 
-
-- Deverá ser utilizado PHP como linguaguem de programação.
-  - Está liberado o uso de qualquer framework, porém nós utilizamos o CodeIgniter e isso será considerado como diferencial.
-- Você também deve utilizar algum padrão de desenvolvimento (ex: MVC, MVVM, MVP, etc...)
-- No layout, Você deverá utilizar algum framework CSS (ex: Bootstrap, MaterializeCSS, etc...)
-- Faça commits pequenos para que possamos acompanhar a sua linha de raciocínio.
-- Após o recebimento do e-mail com esse desafio, você terá 7 dias para desenvolve-lo.
-
-## Por onde começar?
-
-Primeiramente, você pode fazer um fork desse repositório aqui, para sua conta do Github, depois disso crie uma branch nova com o seu nome (ex: nome_sobrenome), para podermos indentificá-lo.
-
-Após terminar o desafio, você pode solicitar um pull request para a branch master do nosso repositório. Vamos receber e fazer a avaliação de todos.

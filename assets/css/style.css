@@ -1,0 +1,20 @@
+#background {
+    /*background-color: "#0f1e2d" !important;*/
+}
+.post-area {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    /*flex: 1 1 0px;*/
+    flex: 1 0 50%;
+}
+.post {
+    margin: 20px;
+    /*flex-grow: 1;
+    flex-shrink: 1;
+    */
+    max-width: 50%;
+    flex-basis: 25%;
+}
