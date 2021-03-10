@@ -3,7 +3,7 @@
         <h5 class="card-title"><?php echo $title;?></h5>
         <?php echo form_open("register/set_new_pass/$id", array('class' => 'panel-cadastrar')) ?>
             <div class="form-group">
-                <label for="email">Senha</label>
+                <label for="password">Senha</label>
                 <input required type="password" class="form-control" name="password" id="password"/>
                 <span class="text-danger"><?php echo form_error('password'); ?></span>
             </div>

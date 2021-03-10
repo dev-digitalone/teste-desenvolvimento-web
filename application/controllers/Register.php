@@ -57,12 +57,12 @@ class Register extends CI_Controller {
        if($this->form_validation->run('recover_email')) {
             $data_user = $this->users_model->isEmailRegistred($this->input->post('email'));
 
-            if(empty($data_user)) {
-                $this->session->set_flashdata('error', 'Email inválido.');
-                redirect(base_url('register/recover'));
-                exit;
+           if(empty($data_user)) {
+               $this->session->set_flashdata('error', 'Email inválido.');
+               redirect(base_url('register/recover'));
+               exit;
 
-            }
+           }
 
            $verification_key = md5(rand());
            $this->session_model->generate_email_key($data_user['id'], $verification_key);
@@ -131,9 +131,10 @@ class Register extends CI_Controller {
                 $data['id'] = $user_id;
 
                 if($this->form_validation->run('set_new_pass')) {
-                    $data = array();
-                    $data['password'] = $this->encryption->encrypt($this->input->post('pass'));
-                    $this->users_model->edit($user_id, $data);
+                    unset($data['title']);
+                    $data['password'] = $this->encryption->encrypt($this->input->post('password'));
+                    echo $this->users_model->edit($data);
+                    $this->session->unset_userdata('verification_key');
                     $this->session->set_flashdata('message', 'Senha alterada com sucesso');
                     redirect(base_url('login'));
 

@@ -1,10 +1,6 @@
 <?php
 
 class Session_model extends CI_Model {
-
-    public function __construct() {
-        //parent::__construct();
-    }
     
     public function verify_session() {
 
@@ -58,8 +54,10 @@ class Session_model extends CI_Model {
             $query = $this->db->get('Verification_Keys');
             $result = $query->result_array();
             if(!empty($result)) { 
-                //deletar a key do banco de dados
+                //deletar a key utilizada no banco de dados
+                $this->db->delete('Verification_Keys', array('user_id' => $result[0]['user_id']));
                 return $result[0]['user_id'];
+
             } else {
                 return 0;
             }

@@ -82,6 +82,7 @@ class Panel extends CI_Controller {
                     $data['password'] = $this->encryption->encrypt($password);
                 }
 
+                $data['id'] = $id;
                 $this->users_model->edit($data);
                 redirect(base_url('panel'));            
 

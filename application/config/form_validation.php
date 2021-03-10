@@ -98,14 +98,16 @@ $config = array (
     ),
 
     'recover_email' => array(
-        'field' => 'email',
-        'label' => 'Email',
-        'rules' => array('required', 'valid_email'),
-        'errors' => array(
-            'required' => 'Você deve digitar um  %s.',
-            'valid_email' => 'O email deve ser válido.',
+        array(
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => array('required', 'valid_email'),
+            'errors' => array(
+                'required' => 'Você deve digitar um  %s.',
+                'valid_email' => 'O email deve ser válido.',
+                ),
             ),
-        ),
+    ),
 
     'set_new_pass' => array(
         array(
