@@ -1,21 +1,6 @@
-.panel-cadastrar {
-    padding: 10px;
+#background {
+    /*background-color: "#0f1e2d" !important;*/
 }
-.panel-mais-info {
-    padding: 20px;
-}
-
-.info-title {
-    font-weight: bold;
-
-}
-.pesquisar {
-    margin-bottom: 40px;
-}
-.btn-pesquisar {
-    width: 100%;
-}
-
 .post-area {
     display: flex;
     flex-direction: row;
@@ -32,8 +17,4 @@
     */
     max-width: 50%;
     flex-basis: 25%;
-}
-
-.card-img-top {
-    /*max-height: 200px !important;*/
 }

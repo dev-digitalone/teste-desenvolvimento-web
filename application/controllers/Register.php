@@ -32,13 +32,19 @@ class Register extends CI_Controller {
 
         } else {
             $encrypted_password = $this->encryption->encrypt($this->input->post('password'));
+
             $data = array(
                 'name' => $this->input->post('name'),
                 'email' => $this->input->post('email'),
                 'password' => $encrypted_password,
             );
+
             $id = $this->users_model->register($data);
-            redirect(base_url());
+            
+            if(!empty($id)) {
+                $this->session_model->login(array('id' => $id, 'email' => $data['email']));
+                redirect(base_url('panel'));
+            }
 
         }
     }

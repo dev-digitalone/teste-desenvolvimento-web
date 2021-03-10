@@ -15,6 +15,11 @@ class Session_model extends CI_Model {
         }
 
     }
+    public function login($session_data) {
+        if(!empty($session_data)) {
+            $this->session->set_userdata($session_data);
+        }
+    }
     
     public function get_session_id() {
         return $this->session->userdata('id');

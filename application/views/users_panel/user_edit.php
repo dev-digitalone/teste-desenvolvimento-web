@@ -1,8 +1,7 @@
+<a class="btn btn-dark" href="<?php echo base_url('panel');?>">Voltar</a>
 <br/>
-<a class="btn btn-primary" href="<?php echo base_url('panel');?>">Voltar</a>
 <br/>
-<br/>
-<div class="card">
+<div class="card text-white bg-dark">
     <div class="card-body">
         <h5 class="card-title">Dados do Usuário</h5>
         <?php echo form_open("panel/user_edit/$id", array('class' => 'panel-cadastrar')) ?>
@@ -27,7 +26,7 @@
                 <span class="text-danger"><?php echo form_error('passconf'); ?></span>
              </div>
             <br/>
-            <input type="submit" class="btn btn-default" value="Alterar"/>
+            <input type="submit" class="btn btn-primary" value="Alterar"/>
         </form>
     </div>
 </div>

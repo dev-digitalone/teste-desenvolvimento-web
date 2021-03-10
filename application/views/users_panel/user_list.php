@@ -1,12 +1,11 @@
-<br/>
 <a class="btn btn-primary" href="<?php echo base_url('panel/user_register');?>">Cadastrar Usuário</a>
 <br/>
 <br/>
-<div class="card">
-    <div class="card-body">
+<div class="card text-white bg-dark ">
+    <div class="card-body table-responsive-sm">
         <h5 class="card-title">Lista de Usuários</h5>
-        <table class="table">
-            <thead>
+        <table class="table table-striped table-dark table-sm">
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">nome</th>

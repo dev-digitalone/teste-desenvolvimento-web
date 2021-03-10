@@ -1,8 +1,7 @@
-<br/>
-<a class="btn btn-primary" href="<?php echo base_url('panel/post_list');?>">Voltar</a>
+<a class="btn btn-dark" href="<?php echo base_url('panel/post_list');?>">Voltar</a>
 <br>
 <br/>
-<div class="card">
+<div class="card text-white bg-dark">
     <div class="card-body">
         <h5 class="card-title">Editar Imagem</h5>
         <?php echo form_open("panel/post_edit/$id", array('class' => 'panel-cadastrar')) ?>
@@ -22,7 +21,7 @@
                 <span class="text-danger"><?php echo form_error('img_url'); ?></span>
             </div>
             <br/>
-            <input type="submit" class="btn btn-default" value="Editar"/>
+            <input type="submit" class="btn btn-primary" value="Editar"/>
             <br/>
             <br/>
             <?php echo '<label class="text-danger">'.$this->session->flashdata("error").'</label>';?>

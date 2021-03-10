@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card text-white bg-dark">
     <div class="card-body">
     <h5 class="card-title"><?php echo $title;?></h5>
     <?php echo form_open('login', array('class' => 'panel-cadastrar')) ?>
@@ -13,7 +13,7 @@
             <span class="text-danger"><?php echo form_error('password'); ?></span>
         </div>
         <br/>
-        <input type="submit" class="btn btn-default" value="Logar"/>
+        <input type="submit" class="btn btn-primary" value="Logar"/>
         <br/>
         <?php echo '<label class="text-danger">'.$this->session->flashdata("error").'</label>';?>
         <?php echo '<label class="text-success">'.$this->session->flashdata("message").'</label>';?>

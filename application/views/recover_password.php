@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card text-white bg-dark">
     <div class="card-body">
         <h5 class="card-title"><?php echo $title;?></h5>
         <?php echo form_open("register/set_new_pass/$id", array('class' => 'panel-cadastrar')) ?>
@@ -13,7 +13,7 @@
                 <span class="text-danger"><?php echo form_error('passconf'); ?></span>
              </div>
             <br/>
-            <input type="submit" class="btn btn-default" value="Alterar Senha"/>
+            <input type="submit" class="btn btn-primary" value="Alterar Senha"/>
             <br/>
             <br/>
             <?php echo '<label class="text-danger">'.$this->session->flashdata("error").'</label>';?>

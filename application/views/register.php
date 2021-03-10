@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card text-white bg-dark">
    <div class="card-body">
-      <div class="card-title">Cadastro de  Usuário</div>
+      <h5 class="card-title">Cadastro de  Usuário</h5>
       <?php echo form_open('register/validation', array('class' => 'panel-cadastrar')) ?>
          <div class="form-group">
             <label>Digite seu Nome</label>
@@ -24,7 +24,7 @@
          </div>
          <br/>
          <div class="form-group">
-            <input type="submit" name="register" value="Cadastrar" class="btn btn-default" />
+            <input type="submit" name="register" value="Cadastrar" class="btn btn-primary" />
          </div>
       </form>
    </div>

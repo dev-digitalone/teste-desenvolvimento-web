@@ -24,14 +24,10 @@ class Login extends CI_Controller {
             $pass = $this->input->post('password');
             $user_id = $this->session_model->verify_login($email, $pass);
 
+            //faz login
             if(!empty($user_id)) {
-                $session_data = array(
-                    'email' => $email,
-                    'id' => $user_id
-                );
-
-                $this->session->set_userdata($session_data);
-                redirect(base_url());
+                $this->session_model->login(array('email' => $email, 'id' => $user_id));
+                redirect(base_url('panel'));
 
             } else {
                 $this->session->set_flashdata('error', 'E-mail e ou senha inválidos.');
