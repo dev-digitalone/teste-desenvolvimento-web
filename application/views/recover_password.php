@@ -1,19 +1,25 @@
-<?php echo validation_errors(); ?>
-<div class="panel panel-default">
-    <div class="panel-heading"><?php echo $title;?></div>
-    <?php echo form_open("register/set_new_pass/$id", array('class' => 'panel-cadastrar')) ?>
-        <div class="input-group">
-            <label for="email">Senha</label>
-            <input required type="password" class="form-control" name="pass" id="pass"/>
-            <span class="text-danger"><?php echo form_error('pass'); ?></span>
-        </div>
-        <br/>
-        <input type="submit" class="btn btn-default" value="Alterar Senha"/>
-        <br/>
-        <br/>
-        <?php echo '<label class="text-danger">'.$this->session->flashdata("error").'</label>';?>
-        <br/>
-        <?php echo '<label class="text-success">'.$this->session->flashdata("message").'</label>';?>
-        <br/>
-    </form>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><?php echo $title;?></h5>
+        <?php echo form_open("register/set_new_pass/$id", array('class' => 'panel-cadastrar')) ?>
+            <div class="form-group">
+                <label for="email">Senha</label>
+                <input required type="password" class="form-control" name="password" id="password"/>
+                <span class="text-danger"><?php echo form_error('password'); ?></span>
+            </div>
+             <div class="form-group">
+                <label>Confirme a senha</label>
+                <input type="password" name="passconf" class="form-control"/>
+                <span class="text-danger"><?php echo form_error('passconf'); ?></span>
+             </div>
+            <br/>
+            <input type="submit" class="btn btn-default" value="Alterar Senha"/>
+            <br/>
+            <br/>
+            <?php echo '<label class="text-danger">'.$this->session->flashdata("error").'</label>';?>
+            <br/>
+            <?php echo '<label class="text-success">'.$this->session->flashdata("message").'</label>';?>
+            <br/>
+        </form>
+    </div>
 </div>

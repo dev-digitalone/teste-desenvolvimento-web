@@ -1,4 +1,3 @@
-<?php echo validation_errors(); ?>
 <div class="panel panel-default">
     <div class="panel-heading"><?php echo $title;?></div>
     <?php echo form_open('register/recover', array('class' => 'panel-cadastrar')) ?>
