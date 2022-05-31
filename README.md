@@ -1,5 +1,5 @@
 <h3 align="center">
-  <img alt="Digital One" src="https://user-images.githubusercontent.com/51726945/85145615-3326c600-b223-11ea-84bf-319fb54949b5.png" />
+  <img alt="Digital One" src="https://digitalone.com.br/images/agencia-de-marketing-digital-one.png" />
 </h3>
 
 <br>
@@ -65,8 +65,8 @@ Este teste tem como objetivo avaliar seus conhecimentos. Fique tranquilo, caso n
 
 ## Regras 
 
-- Deverá ser utilizado PHP como linguaguem de programação.
-  - Está liberado o uso de qualquer framework, porém nós utilizamos o CodeIgniter e isso será considerado como diferencial.
+- Deverá ser utilizado PHP ou NodeJS como linguaguem de programação.
+  - Está liberado o uso de qualquer framework, porém nós utilizamos o CodeIgniter/Laravel para PHP.
 - Você também deve utilizar algum padrão de desenvolvimento (ex: MVC, MVVM, MVP, etc...)
 - No layout, Você deverá utilizar algum framework CSS (ex: Bootstrap, MaterializeCSS, etc...)
 - Faça commits pequenos para que possamos acompanhar a sua linha de raciocínio.
