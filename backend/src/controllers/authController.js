@@ -7,6 +7,7 @@ const {
 } = require("../utils/validations");
 
 const bcrypt = require("bcrypt");
+const createUserToken = require("../utils/create-user-token");
 
 module.exports = class AuthController {
     static async signup(req, res) {
@@ -47,7 +48,8 @@ module.exports = class AuthController {
         };
 
         try {
-            await User.create(userData);
+            const newUser = await User.create(userData);
+            await createUserToken(newUser, req, res);
         } catch (msg) {
             return res.status(500).json({ msg: "Ops... ocoreeu um erro" });
         }
