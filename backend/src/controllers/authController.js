@@ -39,5 +39,17 @@ module.exports = class AuthController {
         const salt = await bcrypt.genSalt(12);
         const passwordHash = await bcrypt.hash(user.password, salt);
         delete user.confirmPassword;
+
+        const userData = {
+            name: user.name,
+            email: user.email,
+            password: passwordHash,
+        };
+
+        try {
+            await User.create(userData);
+        } catch (msg) {
+            return res.status(500).json({ msg: "Ops... ocoreeu um erro" });
+        }
     }
 };
