@@ -33,5 +33,9 @@ module.exports = class AuthController {
         } catch (msg) {
             return res.status(422).json({ msg });
         }
+
+        const salt = await bcrypt.genSalt(12);
+        const passwordHash = await bcrypt.hash(user.password, salt);
+        delete user.confirmPassword;
     }
 };
