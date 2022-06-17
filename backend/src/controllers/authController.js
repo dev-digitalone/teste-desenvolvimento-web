@@ -6,6 +6,8 @@ const {
     notExistsOrError,
 } = require("../utils/validations");
 
+const bcrypt = require("bcrypt");
+
 module.exports = class AuthController {
     static async signup(req, res) {
         const user = { ...req.body };
