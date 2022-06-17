@@ -1,5 +1,10 @@
 const User = require("../models/User");
 
+const dotenv = require("dotenv");
+dotenv.config();
+
+const jwt = require("jsonwebtoken");
+
 const {
     equalsOrError,
     existsOrError,
@@ -8,6 +13,7 @@ const {
 
 const bcrypt = require("bcrypt");
 const createUserToken = require("../utils/create-user-token");
+const getToken = require("../utils/get-token");
 
 module.exports = class AuthController {
     static async signup(req, res) {
@@ -80,5 +86,25 @@ module.exports = class AuthController {
         } catch (msg) {
             return res.status(422).send(msg);
         }
+    }
+
+    static async checkUser(req, res) {
+        let currentUser;
+
+        if (req.headers.authorization) {
+            const token = getToken(req);
+            const decoded = jwt.verify(token, process.env.AUTHSECRET);
+
+            currentUser = await User.findOne({
+                where: {
+                    id: decoded.id,
+                },
+            });
+            currentUser.password = undefined;
+        } else {
+            currentUser = null;
+        }
+
+        res.status(200).send(currentUser);
     }
 };
