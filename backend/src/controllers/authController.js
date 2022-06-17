@@ -54,4 +54,31 @@ module.exports = class AuthController {
             return res.status(500).json({ msg: "Ops... ocoreeu um erro" });
         }
     }
+
+    static async signin(req, res) {
+        const user = { ...req.body };
+
+        try {
+            existsOrError(user.email, "Email não informado");
+
+            const userDb = await User.findOne({
+                where: {
+                    email: user.email,
+                },
+            });
+
+            existsOrError(userDb, "Email não cadastrado");
+
+            existsOrError(user.password, "Senha não informada");
+            const checkPassword = await bcrypt.compare(
+                user.password,
+                userDb.password
+            );
+            existsOrError(checkPassword, "Senha inválida");
+
+            await createUserToken(userDb, req, res);
+        } catch (msg) {
+            return res.status(422).send(msg);
+        }
+    }
 };
