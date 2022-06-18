@@ -172,4 +172,51 @@ module.exports = class AuthController {
             res.status(400).send(msg);
         }
     }
+
+    static async resetPassword(req, res) {
+        const { token } = req.params;
+
+        const { password, confirmPassword } = req.body;
+
+        try {
+            existsOrError(password, "Senha não informada");
+            existsOrError(confirmPassword, "Confirmação de Senha inválida");
+            equalsOrError(password, confirmPassword, "Senhas não conferem");
+        } catch (msg) {
+            return res.status(400).send(msg);
+        }
+
+        const salt = await bcrypt.genSalt(12);
+        const passwordHash = await bcrypt.hash(password, salt);
+
+        const verified = jwt.verify(token, process.env.AUTHSECRET);
+
+        const checkUsedToken = await User.findOne({
+            where: {
+                email: verified.email,
+            },
+        });
+
+        const user = checkUsedToken;
+
+        const userData = {
+            password: passwordHash,
+            passwordResetTokenUsed: true,
+        };
+
+        if (
+            new Date(verified.exp * 1000) > new Date() &&
+            checkUsedToken.passwordResetTokenUsed === false
+        ) {
+            await User.update(userData, {
+                where: {
+                    id: user.id,
+                },
+            });
+
+            return res.status(200).send({ msg: "Senha alterada com sucesso!" });
+        } else {
+            return res.status(400).send("Token inválido!");
+        }
+    }
 };
