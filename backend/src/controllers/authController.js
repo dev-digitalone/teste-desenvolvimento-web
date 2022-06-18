@@ -15,6 +15,8 @@ const bcrypt = require("bcrypt");
 const createUserToken = require("../utils/create-user-token");
 const getToken = require("../utils/get-token");
 
+const mailer = require("../modules/mailer");
+
 module.exports = class AuthController {
     static async signup(req, res) {
         const user = { ...req.body };
@@ -106,5 +108,68 @@ module.exports = class AuthController {
         }
 
         res.status(200).send(currentUser);
+    }
+
+    static async forgotPassword(req, res) {
+        const { email } = req.body;
+
+        try {
+            existsOrError(email, "Infrome seu email!");
+
+            const user = await User.findOne({
+                where: {
+                    email: email,
+                },
+            });
+
+            existsOrError(user, "Usuário não encontrado!");
+
+            const now = Math.floor(Date.now() / 1000);
+
+            const payload = {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                iat: now,
+                exp: now + 60 * 60,
+            };
+
+            const token = jwt.sign(payload, process.env.AUTHSECRET);
+
+            const tokens = {
+                passwordResetToken: token,
+                passwordResetTokenUsed: false,
+            };
+
+            await User.update(tokens, {
+                where: {
+                    id: user.id,
+                },
+            });
+
+            console.log(process.env.MY_EAMIL);
+
+            mailer.sendMail(
+                {
+                    to: email,
+                    from: process.env.MY_EAMIL,
+                    template: "auth/forgot_password",
+                    context: { token },
+                },
+                (err) => {
+                    if (err) {
+                        return res.status(400).send({
+                            error: "Não foi possivel enviar email de recuperação de senha",
+                        });
+                    }
+
+                    return res
+                        .status(200)
+                        .send("Recuperação de senha enviada com sucesso!");
+                }
+            );
+        } catch (msg) {
+            res.status(400).send(msg);
+        }
     }
 };
