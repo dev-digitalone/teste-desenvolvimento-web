@@ -12,4 +12,6 @@ router.post(
     ArticleContoller.saveArticle
 );
 
+router.get("/", ArticleContoller.getArtiles);
+
 module.exports = router;

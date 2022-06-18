@@ -40,4 +40,10 @@ module.exports = class ArticleContoller {
             res.status(500).send({ msg: "Opss... ocorreu um erro!" });
         }
     }
+
+    static async getArtiles(req, res) {
+        const articles = await Article.findAll();
+
+        res.status(200).json({ articles: articles });
+    }
 };
