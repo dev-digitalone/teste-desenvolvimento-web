@@ -89,4 +89,27 @@ module.exports = class UserController {
             return res.status(422).send(msg);
         }
     }
+
+    static async deleteUserById(req, res) {
+        const id = req.params.id;
+
+        const user = await User.findOne({
+            where: {
+                id: id,
+            },
+        });
+
+        if (!user) {
+            res.status(404).json({ msg: "Usuário não encontrado!" });
+            return;
+        }
+
+        await User.destroy({
+            where: {
+                id: id,
+            },
+        });
+
+        res.status(200).json({ msg: "Usuário removido com sucesso!" });
+    }
 };
