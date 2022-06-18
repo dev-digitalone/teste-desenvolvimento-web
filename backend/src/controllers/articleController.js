@@ -128,4 +128,33 @@ module.exports = class ArticleContoller {
 
         res.status(200).json({ msg: "Artigo atualizado com sucesso!" });
     }
+
+    static async removeArticle(req, res) {
+        const id = req.params.id;
+
+        const article = await Article.findOne({
+            where: {
+                id: id,
+            },
+        });
+
+        if (!article) {
+            res.status(404).json({ msg: "Artigo não encontrado!" });
+            return;
+        }
+
+        const token = getToken(req);
+        const user = await getUserByToken(token);
+
+        if (article.UserId !== user.id) {
+            res.status(422).json({
+                msg: "Exclusão não autorizada!",
+            });
+            return;
+        }
+
+        await Article.destroy({ where: { id: id } });
+
+        res.status(200).json({ msg: "Artigo removido com sucesso!" });
+    }
 };

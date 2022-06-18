@@ -13,7 +13,7 @@ router.post(
 );
 
 router.get("/", ArticleContoller.getArtiles);
-router.get("/myArticles", ArticleContoller.getAllUserArticles);
+router.get("/myArticles", verifyToken, ArticleContoller.getAllUserArticles);
 router.get("/:id", ArticleContoller.getArtilesById);
 router.patch(
     "/:id",
@@ -21,5 +21,6 @@ router.patch(
     verifyToken,
     ArticleContoller.updateArticle
 );
+router.delete("/:id", verifyToken, ArticleContoller.removeArticle);
 
 module.exports = router;
