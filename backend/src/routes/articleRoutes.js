@@ -15,5 +15,11 @@ router.post(
 router.get("/", ArticleContoller.getArtiles);
 router.get("/myArticles", ArticleContoller.getAllUserArticles);
 router.get("/:id", ArticleContoller.getArtilesById);
+router.patch(
+    "/:id",
+    imageUpload.single("image"),
+    verifyToken,
+    ArticleContoller.updateArticle
+);
 
 module.exports = router;

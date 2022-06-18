@@ -1,6 +1,6 @@
 const Article = require("../models/Articles");
 
-const { existsOrError } = require("../utils/validations");
+const { existsOrError, equalsOrError } = require("../utils/validations");
 const getUserByToken = require("../utils/get-user-by-token");
 const getToken = require("../utils/get-token");
 
@@ -20,7 +20,7 @@ module.exports = class ArticleContoller {
                 "Informe a descrição do artigo!"
             );
             existsOrError(image, "Selecione uma imagem!");
-            existsOrError(article.author, "Infome o seu nome!");
+            existsOrError(article.author, "Infome o nome do autor!");
         } catch (msg) {
             return res.status(422).send(msg);
         }
@@ -75,5 +75,57 @@ module.exports = class ArticleContoller {
         });
 
         res.status(200).json({ articles: article });
+    }
+
+    static async updateArticle(req, res) {
+        const id = req.params.id;
+        const image = req.file;
+        const article = { ...req.body };
+
+        const updatedData = {};
+
+        const token = getToken(req);
+        const user = await getUserByToken(token);
+
+        if (image) {
+            updatedData.img_url = image.path;
+        }
+
+        try {
+            const articleExists = await Article.findOne({
+                where: {
+                    id: id,
+                },
+            });
+
+            existsOrError(articleExists, "Artigo não encontrado!");
+
+            equalsOrError(
+                articleExists.UserId,
+                user.id,
+                "Atualização não autorizada"
+            );
+
+            existsOrError(article.title, "Título não informado!");
+            updatedData.title = article.title;
+            existsOrError(
+                article.description,
+                "Informe a descrição do artigo!"
+            );
+            updatedData.description = article.description;
+
+            existsOrError(article.author, "Infome o nome do autor!");
+            updatedData.author = article.author;
+        } catch (msg) {
+            return res.status(422).send(msg);
+        }
+
+        await Article.update(updatedData, {
+            where: {
+                id: id,
+            },
+        });
+
+        res.status(200).json({ msg: "Artigo atualizado com sucesso!" });
     }
 };
