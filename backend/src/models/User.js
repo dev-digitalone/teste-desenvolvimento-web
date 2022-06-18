@@ -15,6 +15,14 @@ const User = db.define("User", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    passwordResetToken: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    passwordResetTokenUsed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+    },
 });
 
 module.exports = User;
