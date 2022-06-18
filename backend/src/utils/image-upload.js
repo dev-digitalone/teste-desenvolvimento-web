@@ -16,5 +16,21 @@ const imageStorage = multer.diskStorage({
     },
 });
 
+const imageUpload = multer({
+    storage: imageStorage,
+    limits: {
+        fileSize: 2 * 1024 * 1024,
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(png|jpg)$/)) {
+            return cb(
+                new Error(
+                    "Por favor, envie apenas arquivos no formato jpg ou png!"
+                )
+            );
+        }
+        cb(undefined, true);
+    },
+});
 
 module.exports = { imageUpload };
