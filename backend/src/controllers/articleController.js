@@ -46,4 +46,21 @@ module.exports = class ArticleContoller {
 
         res.status(200).json({ articles: articles });
     }
+
+    static async getArtilesById(req, res) {
+        const id = req.params.id;
+
+        const articles = await Article.findOne({
+            where: {
+                id: id,
+            },
+        });
+
+        if (!articles) {
+            res.status(404).json({ msg: "Artigo não encontrado!" });
+            return;
+        }
+
+        res.status(200).json({ articles: articles });
+    }
 };

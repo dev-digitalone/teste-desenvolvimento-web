@@ -13,5 +13,6 @@ router.post(
 );
 
 router.get("/", ArticleContoller.getArtiles);
+router.get("/:id", ArticleContoller.getArtilesById);
 
 module.exports = router;
