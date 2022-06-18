@@ -13,6 +13,7 @@ router.post(
 );
 
 router.get("/", ArticleContoller.getArtiles);
+router.get("/myArticles", ArticleContoller.getAllUserArticles);
 router.get("/:id", ArticleContoller.getArtilesById);
 
 module.exports = router;

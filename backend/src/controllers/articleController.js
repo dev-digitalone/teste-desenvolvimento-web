@@ -50,17 +50,30 @@ module.exports = class ArticleContoller {
     static async getArtilesById(req, res) {
         const id = req.params.id;
 
-        const articles = await Article.findOne({
+        const article = await Article.findOne({
             where: {
                 id: id,
             },
         });
 
-        if (!articles) {
+        if (!article) {
             res.status(404).json({ msg: "Artigo não encontrado!" });
             return;
         }
 
-        res.status(200).json({ articles: articles });
+        res.status(200).json({ article: article });
+    }
+
+    static async getAllUserArticles(req, res) {
+        const token = getToken(req);
+        const user = await getUserByToken(token);
+
+        const article = await Article.findAll({
+            where: {
+                UserId: user.id,
+            },
+        });
+
+        res.status(200).json({ articles: article });
     }
 };
