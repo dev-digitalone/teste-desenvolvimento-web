@@ -18,6 +18,7 @@
     "plugins": ["react", "react-hooks", "prettier", "import"],
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "react/self-closing-comp": "off"
     }
 }
