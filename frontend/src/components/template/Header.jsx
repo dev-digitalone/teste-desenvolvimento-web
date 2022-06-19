@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
@@ -31,20 +32,22 @@ export default function Header() {
                     </form> */}
                     <div className="d-flex justify-content-center">
                         <div>
-                            <button
-                                className="btn btn-outline-primary mx-2"
-                                type="submit"
-                            >
-                                Entrar
-                            </button>
-                        </div>
-                        <div>
-                            <button
-                                className="btn btn-outline-primary mx-2"
-                                type="submit"
-                            >
-                                Cadastrar
-                            </button>
+                            <Link to="/entrar">
+                                <button
+                                    className="btn btn-outline-primary mx-2"
+                                    type="submit"
+                                >
+                                    Entrar
+                                </button>
+                            </Link>
+                            <Link to="/registrar">
+                                <button
+                                    className="btn btn-outline-primary mx-2"
+                                    type="submit"
+                                >
+                                    Cadastrar
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

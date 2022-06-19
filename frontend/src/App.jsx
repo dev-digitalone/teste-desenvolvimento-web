@@ -5,6 +5,7 @@ import Footer from './components/template/Footer';
 import Header from './components/template/Header';
 import ContainerContet from './components/template/ContainerContent';
 import Home from './components/views/Home';
+import Register from './components/views/auth/Register';
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
             <Header />
             <ContainerContet>
                 <Routes>
+                    <Route path="/registrar" element={<Register />} />
                     <Route path="/" element={<Home />} />
                 </Routes>
             </ContainerContet>

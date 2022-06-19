@@ -1,7 +1,5 @@
+import React from 'react';
+
 export default function Input() {
-    return (
-        <>
-            <h1>Inputs</h1>
-        </>
-    );
+    return <h1>Inputs</h1>;
 }
