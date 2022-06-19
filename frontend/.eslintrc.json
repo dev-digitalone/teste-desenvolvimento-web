@@ -19,6 +19,7 @@
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "prettier/prettier": "error",
-        "react/self-closing-comp": "off"
+        "react/self-closing-comp": "off",
+        "react/prop-types": 0
     }
 }
