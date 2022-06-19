@@ -2,13 +2,14 @@ import React from 'react';
 import Footer from './components/template/Footer';
 import Header from './components/template/Header';
 import ContainerContet from './components/template/ContainerContent';
+import Home from './components/views/Home';
 
 function App() {
     return (
         <div className="App">
             <Header />
             <ContainerContet>
-                <h1>Hello word</h1>
+                <Home />
             </ContainerContet>
             <Footer />
         </div>
