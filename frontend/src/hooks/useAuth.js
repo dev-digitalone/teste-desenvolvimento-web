@@ -73,6 +73,7 @@ export default function useAuth() {
         setAuthenticated(false);
         localStorage.removeItem('token');
         axios.defaults.headers.Authorization = undefined;
+        navigate('/');
 
         setAlerts(msgText, msgType);
     }
