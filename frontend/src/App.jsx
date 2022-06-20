@@ -7,17 +7,21 @@ import ContainerContet from './components/template/ContainerContent';
 import Home from './components/views/Home';
 import Register from './components/views/auth/Register';
 
+import { UserProvider } from './context/UserContext';
+
 function App() {
     return (
         <Router>
-            <Header />
-            <ContainerContet>
-                <Routes>
-                    <Route path="/registrar" element={<Register />} />
-                    <Route path="/" element={<Home />} />
-                </Routes>
-            </ContainerContet>
-            <Footer />
+            <UserProvider>
+                <Header />
+                <ContainerContet>
+                    <Routes>
+                        <Route path="/registrar" element={<Register />} />
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </ContainerContet>
+                <Footer />
+            </UserProvider>
         </Router>
     );
 }
