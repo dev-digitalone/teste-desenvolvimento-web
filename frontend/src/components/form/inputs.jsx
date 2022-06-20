@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, InputGroup } from 'react-bootstrap';
 
 export default function Input({
     label,
@@ -12,13 +12,17 @@ export default function Input({
     return (
         <>
             <Form.Label>{label}</Form.Label>
-            <Form.Control
-                required={isRequired}
-                type={type}
-                placeholder={placeholder}
-                defaultValue={value}
-            />
-            <Form.Control.Feedback>{validateMsg}</Form.Control.Feedback>
+            <InputGroup hasValidation>
+                <Form.Control
+                    required={isRequired}
+                    type={type}
+                    placeholder={placeholder}
+                    defaultValue={value}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {validateMsg}
+                </Form.Control.Feedback>
+            </InputGroup>
         </>
     );
 }
