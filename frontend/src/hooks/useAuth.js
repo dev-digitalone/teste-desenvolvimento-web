@@ -1,7 +1,7 @@
-import axios from '../utils/axios';
+// import { useState, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from '../utils/axios';
 
 export default function useAuth() {
     async function register(user) {
@@ -12,7 +12,7 @@ export default function useAuth() {
 
             console.log(data);
         } catch (error) {
-            console.log(err);
+            console.log(error);
         }
     }
 

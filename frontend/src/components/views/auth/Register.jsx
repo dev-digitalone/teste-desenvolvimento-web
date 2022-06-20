@@ -6,8 +6,11 @@ import styles from '../../form/Form.module.css';
 
 import Inputs from '../../form/Inputs';
 
+import { Context } from '../../../context/UserContext';
+
 export default function Register() {
     const [user, setUser] = React.useState({});
+    const { register } = React.useContext(Context);
     const [validated, setValidated] = React.useState(false);
 
     const handleChange = (e) => {
@@ -15,6 +18,7 @@ export default function Register() {
     };
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -22,6 +26,7 @@ export default function Register() {
         }
 
         setValidated(true);
+        register(user);
     };
 
     return (
