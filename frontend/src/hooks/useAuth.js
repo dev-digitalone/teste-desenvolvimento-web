@@ -10,6 +10,23 @@ export default function useAuth() {
     const { setAlerts } = useAlerts();
     const [authenticated, setAuthenticated] = useState(false);
     const navigate = useNavigate(false);
+    const [token] = useState(localStorage.getItem('token') || '');
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        if (token) {
+            axios
+                .get('/checkUser', {
+                    headers: {
+                        Authorization: `Bearer ${JSON.parse(token)}`,
+                    },
+                })
+                .then((res) => {
+                    setUser(res.data);
+                    console.log(res.data);
+                });
+        }
+    }, [token]);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -78,5 +95,5 @@ export default function useAuth() {
         setAlerts(msgText, msgType);
     }
 
-    return { login, register, logout, authenticated };
+    return { login, register, logout, authenticated, user };
 }
