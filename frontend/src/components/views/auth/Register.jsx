@@ -4,7 +4,12 @@ import { Button, Col, Form, Row } from 'react-bootstrap';
 import Inputs from '../../form/inputs';
 
 export default function Register() {
+    const [user, setUser] = React.useState({});
     const [validated, setValidated] = React.useState(false);
+
+    const handleChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -30,8 +35,10 @@ export default function Register() {
                             label="Nome:"
                             placeholder="Digite o seu nome"
                             type="text"
-                            isRequired="true"
+                            name="name"
+                            isRequired="required"
                             validateMsg="Nome não informado!"
+                            handleOnChange={handleChange}
                         />
                     </Form.Group>
                     <Form.Group
@@ -44,8 +51,10 @@ export default function Register() {
                             label="E-mail:"
                             placeholder="Digite o seu email"
                             type="email"
-                            isRequired="true"
+                            name="email"
+                            isRequired="required"
                             validateMsg="E-mail não informado!"
+                            handleOnChange={handleChange}
                         />
                     </Form.Group>
                 </Row>
@@ -60,8 +69,10 @@ export default function Register() {
                             label="Senha:"
                             placeholder="Digite a sua senha"
                             type="password"
-                            isRequired="true"
+                            name="password"
+                            isRequired="required"
                             validateMsg="Senha não informada"
+                            handleOnChange={handleChange}
                         />
                     </Form.Group>
                     <Form.Group
@@ -74,8 +85,10 @@ export default function Register() {
                             label="Confirmação de senha:"
                             placeholder="Confirme a sua senha"
                             type="password"
-                            isRequired="true"
+                            name="confirmPassword"
+                            isRequired="required"
                             validateMsg="Confirmação de senha não informada"
+                            handleOnChange={handleChange}
                         />
                     </Form.Group>
                 </Row>

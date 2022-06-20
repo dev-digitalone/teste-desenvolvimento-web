@@ -8,6 +8,8 @@ export default function Input({
     placeholder,
     value,
     validateMsg,
+    handleOnChange,
+    name,
 }) {
     return (
         <>
@@ -16,8 +18,10 @@ export default function Input({
                 <Form.Control
                     required={isRequired}
                     type={type}
+                    name={name}
                     placeholder={placeholder}
                     defaultValue={value}
+                    onChange={handleOnChange}
                 />
                 <Form.Control.Feedback type="invalid">
                     {validateMsg}
