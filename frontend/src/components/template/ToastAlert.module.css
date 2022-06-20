@@ -1,0 +1,8 @@
+.container {
+    position: fixed;
+    right: 0;
+    padding: 2em;
+    min-width: 35%;
+    max-width: 70%;
+    z-index: 1000;
+}

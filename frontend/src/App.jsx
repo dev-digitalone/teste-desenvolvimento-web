@@ -6,6 +6,7 @@ import Header from './components/template/Header';
 import ContainerContet from './components/template/ContainerContent';
 import Home from './components/views/Home';
 import Register from './components/views/auth/Register';
+import ToastAlert from './components/template/ToastAlert';
 
 import { UserProvider } from './context/UserContext';
 
@@ -14,6 +15,7 @@ function App() {
         <Router>
             <UserProvider>
                 <Header />
+                <ToastAlert />
                 <ContainerContet>
                     <Routes>
                         <Route path="/registrar" element={<Register />} />
