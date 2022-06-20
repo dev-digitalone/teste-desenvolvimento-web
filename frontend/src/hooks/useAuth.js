@@ -48,5 +48,23 @@ export default function useAuth() {
         navigate('/');
     }
 
-    return { register, authenticated };
+    async function login(user) {
+        let msgText = 'Login realizado com sucesso!';
+        let msgType = 'success';
+
+        try {
+            const data = await axios.post('/signin', user).then((res) => {
+                return res.data;
+            });
+
+            await authUser(data);
+        } catch (error) {
+            msgText = error.response.data.msg;
+            msgType = 'danger';
+        }
+
+        setAlerts(msgText, msgType);
+    }
+
+    return { login, register, authenticated };
 }
