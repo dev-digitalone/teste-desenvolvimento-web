@@ -9,6 +9,7 @@ import Register from './components/views/auth/Register';
 import ToastAlert from './components/template/ToastAlert';
 
 import { UserProvider } from './context/UserContext';
+import Login from './components/views/auth/Login';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <ToastAlert />
                 <ContainerContet>
                     <Routes>
+                        <Route path="/entrar" element={<Login />} />
                         <Route path="/registrar" element={<Register />} />
                         <Route path="/" element={<Home />} />
                     </Routes>
