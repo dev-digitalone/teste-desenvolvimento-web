@@ -66,5 +66,16 @@ export default function useAuth() {
         setAlerts(msgText, msgType);
     }
 
-    return { login, register, authenticated };
+    function logout() {
+        const msgText = 'Logout realizado com sucesso!';
+        const msgType = 'success';
+
+        setAuthenticated(false);
+        localStorage.removeItem('token');
+        axios.defaults.headers.Authorization = undefined;
+
+        setAlerts(msgText, msgType);
+    }
+
+    return { login, register, logout, authenticated };
 }
