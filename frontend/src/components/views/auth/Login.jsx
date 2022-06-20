@@ -6,10 +6,12 @@ import { Button, Card, Form } from 'react-bootstrap';
 import styles from '../../form/Form.module.css';
 
 import Inputs from '../../form/Inputs';
+import { Context } from '../../../context/UserContext';
 
 export default function Login() {
     const [user, setUser] = React.useState({});
     const [validated, setValidated] = React.useState(false);
+    const { login } = React.useContext(Context);
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -24,6 +26,7 @@ export default function Login() {
         }
 
         setValidated(true);
+        setUser(login);
     };
 
     return (
