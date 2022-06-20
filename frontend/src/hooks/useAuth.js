@@ -1,19 +1,24 @@
-// import { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import useAlerts from './useAlerts';
 
 import axios from '../utils/axios';
 
 export default function useAuth() {
+    const { setAlerts } = useAlerts();
+
     async function register(user) {
+        let msgText = 'Cadastro realizado com sucesso!';
+        let msgType = 'success';
+
         try {
-            const data = await axios.post('/signup', user).then((res) => {
+            await axios.post('/signup', user).then((res) => {
                 return res.data;
             });
-
-            console.log(data);
         } catch (error) {
-            console.log(error);
+            msgText = error.response.data.msg;
+            msgType = 'danger';
         }
+
+        setAlerts(msgText, msgType);
     }
 
     return { register };
