@@ -1,20 +1,23 @@
 import React from 'react';
 
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
-
 import { Card } from 'react-bootstrap';
+
 import axios from '../../../utils/axios';
 
 import styles from './MyArticles.module.css';
+
 import ModalDelete from '../../modal/ModalDelete';
+import FormModal from '../../modal/FormModal';
+
 import useAlerts from '../../../hooks/useAlerts';
 
 export default function MyArticles() {
     const [articles, setArticles] = React.useState([]);
     const [token] = React.useState(localStorage.getItem('token') || '');
-    const [show, setShow] = React.useState(false);
+    const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+    const [showFormModal, setShowFormModal] = React.useState(false);
     const [articleId, setArticleId] = React.useState('');
-    const handleClose = () => setShow(false);
     const { setAlerts } = useAlerts();
 
     const loadUserArticles = () => {
@@ -33,8 +36,13 @@ export default function MyArticles() {
         loadUserArticles();
     }, []);
 
+    const handleClose = () => {
+        setShowDeleteModal(false);
+        setShowFormModal(false);
+    };
+
     function handleDeleteArticle(id) {
-        setShow(true);
+        setShowDeleteModal(true);
         setArticleId(id);
     }
 
@@ -50,7 +58,7 @@ export default function MyArticles() {
                 },
             })
             .then((res) => {
-                setShow(false);
+                setShowDeleteModal(false);
                 loadUserArticles();
                 return res.data.msg;
             })
@@ -62,13 +70,19 @@ export default function MyArticles() {
         setAlerts(data, msgtype);
     };
 
+    function handleEditArticle(id) {
+        setShowFormModal(true);
+        setArticleId(id);
+    }
+
     return (
         <section>
             <ModalDelete
                 handleDelete={deleteArticle}
-                show={show}
+                show={showDeleteModal}
                 handleClose={handleClose}
             />
+            <FormModal show={showFormModal} handleClose={handleClose} />
             <h1 className="text-center py-4">Meus Artigos</h1>
             <div className="d-flex flex-wrap justify-content-evenly">
                 {articles.map((article) => (
@@ -85,7 +99,12 @@ export default function MyArticles() {
                                 <Card.Text>{article.description}</Card.Text>
                             </Card.Body>
                             <Card.Body className={styles.card_actions}>
-                                <button type="submit">
+                                <button
+                                    type="submit"
+                                    onClick={() =>
+                                        handleEditArticle(article.id)
+                                    }
+                                >
                                     <BsFillPencilFill /> Editar
                                 </button>
                                 <button
