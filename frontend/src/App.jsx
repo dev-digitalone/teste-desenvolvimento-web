@@ -6,10 +6,12 @@ import Header from './components/template/Header';
 import ContainerContet from './components/template/ContainerContent';
 import Home from './components/views/Home';
 import Register from './components/views/auth/Register';
+import Login from './components/views/auth/Login';
+import Profile from './components/views/user/Profile';
+
 import ToastAlert from './components/template/ToastAlert';
 
 import { UserProvider } from './context/UserContext';
-import Login from './components/views/auth/Login';
 
 function App() {
     return (
@@ -19,6 +21,7 @@ function App() {
                 <ToastAlert />
                 <ContainerContet>
                     <Routes>
+                        <Route path="/perfil/:id" element={<Profile />} />
                         <Route path="/entrar" element={<Login />} />
                         <Route path="/registrar" element={<Register />} />
                         <Route path="/" element={<Home />} />

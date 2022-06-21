@@ -23,7 +23,6 @@ export default function useAuth() {
                 })
                 .then((res) => {
                     setUser(res.data);
-                    console.log(res.data);
                 });
         }
     }, [token]);

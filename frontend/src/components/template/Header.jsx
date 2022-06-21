@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Context } from '../../context/UserContext';
 
 export default function Header() {
-    const { authenticated, logout } = React.useContext(Context);
+    const { authenticated, logout, user } = React.useContext(Context);
 
     return (
         <Navbar expand="lg" className="navbar-dark bg-dark">
@@ -27,7 +27,9 @@ export default function Header() {
                                 <Nav.Link href="/meusartigos">
                                     Meus artigos
                                 </Nav.Link>
-                                <Nav.Link href="/perfil">Perfil</Nav.Link>
+                                <Nav.Link href={`/perfil/${user.id}`}>
+                                    Perfil
+                                </Nav.Link>
                                 <Button
                                     className="mx-2"
                                     variant="outline-primary"
