@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Card, Form } from 'react-bootstrap';
 
 import styles from '../../form/Form.module.css';
@@ -8,13 +8,16 @@ import Inputs from '../../form/Inputs';
 
 import axios from '../../../utils/axios';
 import useAlerts from '../../../hooks/useAlerts';
+import { Context } from '../../../context/UserContext';
 
 export default function Profile() {
     const [user, setUser] = React.useState({});
     const [validated, setValidated] = React.useState(false);
     const [token] = React.useState(localStorage.getItem('token') || '');
+    const { logout } = React.useContext(Context);
     const { setAlerts } = useAlerts();
     const { id } = useParams();
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         axios
@@ -26,7 +29,7 @@ export default function Profile() {
             .then((res) => {
                 setUser(res.data.user);
             });
-    }, [id]);
+    }, []);
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -60,6 +63,28 @@ export default function Profile() {
             });
 
         setAlerts(data, msgtype);
+    };
+
+    const deleteUser = async () => {
+        let msgtype = 'success';
+
+        const data = await axios
+            .delete(`/users/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`,
+                },
+            })
+            .then((res) => {
+                return res.data.msg;
+            })
+            .catch((error) => {
+                msgtype = 'danger';
+                return error.response.data.msg;
+            });
+
+        setAlerts(data, msgtype);
+        logout();
+        navigate('/registrar');
     };
 
     return (
@@ -114,7 +139,7 @@ export default function Profile() {
                         <Button type="submit">Atualizar</Button>
                     </div>
                     <div className="d-grid gap-2 col-12 mx-auto mt-5">
-                        <Button variant="danger" type="submit">
+                        <Button variant="danger" onClick={deleteUser}>
                             Excluir conta
                         </Button>
                     </div>
