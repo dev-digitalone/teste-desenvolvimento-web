@@ -8,6 +8,7 @@ import Home from './components/views/Home';
 import Register from './components/views/auth/Register';
 import Login from './components/views/auth/Login';
 import Profile from './components/views/user/Profile';
+import CreateArticle from './components/views/articles/CreateArticle';
 
 import ToastAlert from './components/template/ToastAlert';
 
@@ -21,6 +22,7 @@ function App() {
                 <ToastAlert />
                 <ContainerContet>
                     <Routes>
+                        <Route path="/artigo" element={<CreateArticle />} />
                         <Route path="/perfil/:id" element={<Profile />} />
                         <Route path="/entrar" element={<Login />} />
                         <Route path="/registrar" element={<Register />} />
