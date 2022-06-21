@@ -7,9 +7,17 @@ import Inputs from '../../form/Inputs';
 
 import styles from '../../form/Form.module.css';
 
+import { Context } from '../../../context/UserContext';
+
 export default function ResetPassword() {
     const [password, setPassword] = React.useState({});
     const { token } = useParams();
+    const { resetPassword } = React.useContext(Context);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        resetPassword(password, token);
+    };
 
     return (
         <section>
@@ -25,7 +33,10 @@ export default function ResetPassword() {
                         name="password"
                         isRequired="required"
                         handleOnChange={(e) =>
-                            setPassword({ [e.target.name]: e.target.value })
+                            setPassword({
+                                ...password,
+                                [e.target.name]: e.target.value,
+                            })
                         }
                     />
                     <Inputs
@@ -35,7 +46,10 @@ export default function ResetPassword() {
                         name="confirmPassword"
                         isRequired="required"
                         handleOnChange={(e) =>
-                            setPassword({ [e.target.name]: e.target.value })
+                            setPassword({
+                                ...password,
+                                [e.target.name]: e.target.value,
+                            })
                         }
                     />
 

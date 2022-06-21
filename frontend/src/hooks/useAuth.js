@@ -118,6 +118,23 @@ export default function useAuth() {
         }, 1000);
     }
 
+    async function resetPassword(password, token) {
+        let msgtype = 'success';
+
+        const data = await axios
+            .post(`/resetPassword/${token}`, password)
+            .then((res) => {
+                navigate('/entrar');
+                return res.data.msg;
+            })
+            .catch((error) => {
+                msgtype = 'danger';
+                return error.response.data.msg;
+            });
+
+        setAlerts(data, msgtype);
+    }
+
     return {
         login,
         register,
@@ -126,5 +143,6 @@ export default function useAuth() {
         user,
         loading,
         forgotPassword,
+        resetPassword,
     };
 }

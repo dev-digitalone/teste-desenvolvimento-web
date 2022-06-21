@@ -29,7 +29,7 @@ function App() {
                         <Route path="/artigo" element={<CreateArticle />} />
                         <Route path="/perfil/:id" element={<Profile />} />
                         <Route
-                            path="/resetar-senha"
+                            path="/resetar-senha/:token"
                             element={<ResetPassword />}
                         />
                         <Route

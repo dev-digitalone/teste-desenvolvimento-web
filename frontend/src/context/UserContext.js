@@ -1,7 +1,6 @@
 import React, { createContext } from 'react';
 
 import { Spinner } from 'react-bootstrap';
-
 import useAuth from '../hooks/useAuth';
 
 const Context = createContext();
@@ -15,6 +14,7 @@ function UserProvider({ children }) {
         logout,
         loading,
         forgotPassword,
+        resetPassword,
     } = useAuth();
 
     if (loading) {
@@ -40,6 +40,7 @@ function UserProvider({ children }) {
                 logout,
                 loading,
                 forgotPassword,
+                resetPassword,
             }}
         >
             {children}
