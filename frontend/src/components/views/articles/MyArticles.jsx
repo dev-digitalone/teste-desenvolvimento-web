@@ -14,6 +14,7 @@ import useAlerts from '../../../hooks/useAlerts';
 
 export default function MyArticles() {
     const [articles, setArticles] = React.useState([]);
+    const [articleData, setArticleData] = React.useState([]);
     const [token] = React.useState(localStorage.getItem('token') || '');
     const [showDeleteModal, setShowDeleteModal] = React.useState(false);
     const [showFormModal, setShowFormModal] = React.useState(false);
@@ -75,6 +76,18 @@ export default function MyArticles() {
         setArticleId(id);
     }
 
+    React.useEffect(() => {
+        const loadArticleById = async () => {
+            await axios.get(`/articles/${articleId}`).then((res) => {
+                setArticleData(res.data.article);
+            });
+        };
+
+        if (articleId) {
+            loadArticleById();
+        }
+    }, [articleId]);
+
     return (
         <section>
             <ModalDelete
@@ -82,7 +95,12 @@ export default function MyArticles() {
                 show={showDeleteModal}
                 handleClose={handleClose}
             />
-            <FormModal show={showFormModal} handleClose={handleClose} />
+            <FormModal
+                show={showFormModal}
+                handleClose={handleClose}
+                articleData={articleData}
+                loadArticles={loadUserArticles}
+            />
             <h1 className="text-center py-4">Meus Artigos</h1>
             <div className="d-flex flex-wrap justify-content-evenly">
                 {articles.map((article) => (
