@@ -157,18 +157,20 @@ module.exports = class AuthController {
                 },
                 (err) => {
                     if (err) {
-                        return res.status(400).send({
+                        return res.status(400).json({
                             error: "Não foi possivel enviar email de recuperação de senha",
                         });
                     }
 
                     return res
                         .status(200)
-                        .send("Recuperação de senha enviada com sucesso!");
+                        .json({
+                            msg: "Recuperação de senha enviada com sucesso!",
+                        });
                 }
             );
         } catch (msg) {
-            res.status(400).send(msg);
+            res.status(400).json({ msg });
         }
     }
 
@@ -182,7 +184,7 @@ module.exports = class AuthController {
             existsOrError(confirmPassword, "Confirmação de Senha inválida");
             equalsOrError(password, confirmPassword, "Senhas não conferem");
         } catch (msg) {
-            return res.status(400).send(msg);
+            return res.status(400).json({ msg });
         }
 
         const salt = await bcrypt.genSalt(12);
@@ -213,9 +215,9 @@ module.exports = class AuthController {
                 },
             });
 
-            return res.status(200).send({ msg: "Senha alterada com sucesso!" });
+            return res.status(200).json({ msg: "Senha alterada com sucesso!" });
         } else {
-            return res.status(400).send("Token inválido!");
+            return res.status(400).json({ msg: "Token inválido!" });
         }
     }
 };
