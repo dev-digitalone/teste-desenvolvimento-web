@@ -53,11 +53,13 @@ module.exports = class UserController {
 
             userInToken.email = user.email;
 
-            equalsOrError(
-                user.password,
-                user.confirmPassword,
-                "Senhas não conferem"
-            );
+            if (user.password || user.confirmPassword !== null) {
+                equalsOrError(
+                    user.password,
+                    user.confirmPassword,
+                    "Senhas não conferem"
+                );
+            }
 
             if (
                 user.password === user.confirmPassword &&
@@ -80,13 +82,15 @@ module.exports = class UserController {
                     where: { id: id },
                 });
 
-                res.status(200).send("Usuário atualizado com sucesso!");
+                res.status(200).json({
+                    msg: "Usuário atualizado com sucesso!",
+                });
             } catch (msg) {
-                res.status(500).send(msg);
+                res.status(500).json({ msg });
                 return;
             }
         } catch (msg) {
-            return res.status(422).send(msg);
+            return res.status(422).json({ msg });
         }
     }
 

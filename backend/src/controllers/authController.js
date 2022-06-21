@@ -83,10 +83,9 @@ module.exports = class AuthController {
                 userDb.password
             );
             existsOrError(checkPassword, "Senha inválida");
-
             await createUserToken(userDb, req, res);
         } catch (msg) {
-            return res.status(422).send(msg);
+            return res.status(422).json({ msg });
         }
     }
 
