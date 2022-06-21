@@ -11,7 +11,6 @@ import { Context } from '../../../context/UserContext';
 export default function Register() {
     const [user, setUser] = React.useState({});
     const { register } = React.useContext(Context);
-    const [validated, setValidated] = React.useState(false);
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -19,13 +18,7 @@ export default function Register() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
 
-        setValidated(true);
         register(user);
     };
 
@@ -35,14 +28,13 @@ export default function Register() {
                 <div>
                     <h1>Cadastrar</h1>
                 </div>
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                     <Inputs
                         label="Nome:"
                         placeholder="Digite o seu nome"
                         type="text"
                         name="name"
                         isRequired="required"
-                        validateMsg="Nome não informado!"
                         handleOnChange={handleChange}
                     />
 
@@ -52,7 +44,6 @@ export default function Register() {
                         type="email"
                         name="email"
                         isRequired="required"
-                        validateMsg="E-mail não informado!"
                         handleOnChange={handleChange}
                     />
 
@@ -62,7 +53,6 @@ export default function Register() {
                         type="password"
                         name="password"
                         isRequired="required"
-                        validateMsg="Senha não informada"
                         handleOnChange={handleChange}
                     />
 
@@ -72,7 +62,6 @@ export default function Register() {
                         type="password"
                         name="confirmPassword"
                         isRequired="required"
-                        validateMsg="Confirmação de senha não informada"
                         handleOnChange={handleChange}
                     />
                     <div className="d-grid gap-2 col-12 mx-auto mt-5">

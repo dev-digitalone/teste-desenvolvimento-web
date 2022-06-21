@@ -10,7 +10,6 @@ import { Context } from '../../../context/UserContext';
 
 export default function Login() {
     const [user, setUser] = React.useState({});
-    const [validated, setValidated] = React.useState(false);
     const { login } = React.useContext(Context);
 
     const handleChange = (e) => {
@@ -19,13 +18,7 @@ export default function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
 
-        setValidated(true);
         setUser(login);
     };
 
@@ -35,14 +28,13 @@ export default function Login() {
                 <div>
                     <h1>Entrar</h1>
                 </div>
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                     <Inputs
                         label="E-mail:"
                         placeholder="Digite o seu email"
                         type="email"
                         name="email"
                         isRequired="required"
-                        validateMsg="E-mail não informado!"
                         handleOnChange={handleChange}
                     />
 
@@ -52,7 +44,6 @@ export default function Login() {
                         type="password"
                         name="password"
                         isRequired="required"
-                        validateMsg="Senha não informada"
                         handleOnChange={handleChange}
                     />
 

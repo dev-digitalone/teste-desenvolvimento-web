@@ -12,7 +12,6 @@ import { Context } from '../../../context/UserContext';
 
 export default function Profile() {
     const [user, setUser] = React.useState({});
-    const [validated, setValidated] = React.useState(false);
     const [token] = React.useState(localStorage.getItem('token') || '');
     const { logout } = React.useContext(Context);
     const { setAlerts } = useAlerts();
@@ -39,14 +38,6 @@ export default function Profile() {
         event.preventDefault();
 
         let msgtype = 'success';
-
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
-        setValidated(true);
 
         const data = await axios
             .patch(`/users/${user.id}`, user, {
@@ -93,14 +84,13 @@ export default function Profile() {
                 <div>
                     <h1>Perfil</h1>
                 </div>
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                     <Inputs
                         label="Nome:"
                         placeholder="Digite o seu nome"
                         type="text"
                         name="name"
                         isRequired="required"
-                        validateMsg="Nome não informado!"
                         handleOnChange={handleChange}
                         value={user.name || ''}
                     />
@@ -111,7 +101,6 @@ export default function Profile() {
                         type="email"
                         name="email"
                         isRequired="required"
-                        validateMsg="E-mail não informado!"
                         handleOnChange={handleChange}
                         value={user.email || ''}
                     />
@@ -121,8 +110,6 @@ export default function Profile() {
                         placeholder="Digite a sua senha"
                         type="password"
                         name="password"
-                        isRequired="required"
-                        validateMsg="Senha não informada"
                         handleOnChange={handleChange}
                     />
 
@@ -131,8 +118,6 @@ export default function Profile() {
                         placeholder="Confirme a sua senha"
                         type="password"
                         name="confirmPassword"
-                        isRequired="required"
-                        validateMsg="Confirmação de senha não informada"
                         handleOnChange={handleChange}
                     />
                     <div className="d-grid gap-2 col-12 mx-auto mt-5">

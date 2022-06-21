@@ -7,7 +7,6 @@ export default function Input({
     type,
     placeholder,
     value,
-    validateMsg,
     handleOnChange,
     name,
 }) {
@@ -23,9 +22,6 @@ export default function Input({
                     defaultValue={value}
                     onChange={handleOnChange}
                 />
-                <Form.Control.Feedback type="invalid">
-                    {validateMsg}
-                </Form.Control.Feedback>
             </InputGroup>
         </>
     );
