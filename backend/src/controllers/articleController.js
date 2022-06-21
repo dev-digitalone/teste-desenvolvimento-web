@@ -8,7 +8,7 @@ module.exports = class ArticleContoller {
     static async saveArticle(req, res) {
         const article = { ...req.body };
 
-        const image = req.file.path;
+        const image = { ...req.file };
 
         const token = getToken(req);
         const user = await getUserByToken(token);
@@ -19,16 +19,16 @@ module.exports = class ArticleContoller {
                 article.description,
                 "Informe a descrição do artigo!"
             );
-            existsOrError(image, "Selecione uma imagem!");
             existsOrError(article.author, "Infome o nome do autor!");
+            existsOrError(image.path, "Selecione uma imagem!");
         } catch (msg) {
-            return res.status(422).send(msg);
+            return res.status(422).json({ msg });
         }
 
         const articleData = {
             title: article.title,
             description: article.description,
-            img_url: image,
+            img_url: image.path,
             author: article.author,
             UserId: user.id,
         };
@@ -37,7 +37,7 @@ module.exports = class ArticleContoller {
             await Article.create(articleData);
             res.status(201).json({ msg: "Artigo salvo com sucesso!" });
         } catch (msg) {
-            res.status(500).send({ msg: "Opss... ocorreu um erro!" });
+            res.status(500).json({ msg: "Opss... ocorreu um erro!" });
         }
     }
 
@@ -117,7 +117,7 @@ module.exports = class ArticleContoller {
             existsOrError(article.author, "Infome o nome do autor!");
             updatedData.author = article.author;
         } catch (msg) {
-            return res.status(422).send(msg);
+            return res.status(422).json({ msg });
         }
 
         await Article.update(updatedData, {
