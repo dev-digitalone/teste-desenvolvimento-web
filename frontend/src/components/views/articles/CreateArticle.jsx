@@ -19,7 +19,6 @@ export default function Login() {
     };
 
     const onFileChange = (e) => {
-        console.log({ ...article, image: [...e.target.files] });
         setArticle({ ...article, image: [...e.target.files] });
     };
 
@@ -33,12 +32,10 @@ export default function Login() {
                 for (let i = 0; i < article[key].length; i++) {
                     fd.append('image', article[key][i]);
                 }
-                console.log(article[key]);
             } else {
                 fd.append(key, article[key]);
             }
         });
-        console.log(article);
 
         const data = await axios
             .post('/articles/create', fd, {
