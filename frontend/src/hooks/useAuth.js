@@ -97,5 +97,34 @@ export default function useAuth() {
         setAlerts(msgText, msgType);
     }
 
-    return { login, register, logout, authenticated, user, loading };
+    async function forgotPassword(email) {
+        let msgtype = 'success';
+
+        setLoading(true);
+
+        const data = await axios
+            .post('/forgotPassword', email)
+            .then((res) => {
+                return res.data.msg;
+            })
+            .catch((error) => {
+                msgtype = 'danger';
+                return error.response.data.msg;
+            });
+
+        setLoading(false);
+        setTimeout(() => {
+            setAlerts(data, msgtype);
+        }, 1000);
+    }
+
+    return {
+        login,
+        register,
+        logout,
+        authenticated,
+        user,
+        loading,
+        forgotPassword,
+    };
 }

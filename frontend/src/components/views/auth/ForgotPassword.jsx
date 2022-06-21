@@ -6,33 +6,15 @@ import Inputs from '../../form/Inputs';
 
 import styles from '../../form/Form.module.css';
 
-import axios from '../../../utils/axios';
-
-import useAlerts from '../../../hooks/useAlerts';
+import { Context } from '../../../context/UserContext';
 
 export default function ForgotPassword() {
     const [email, setEmail] = React.useState('');
-    const { setAlerts } = useAlerts();
-
-    async function forgotPassword() {
-        let msgtype = 'success';
-
-        const data = await axios
-            .post('/forgotPassword', email)
-            .then((res) => {
-                return res.data.msg;
-            })
-            .catch((error) => {
-                msgtype = 'danger';
-                return error.response.data.msg;
-            });
-
-        setAlerts(data, msgtype);
-    }
+    const { forgotPassword } = React.useContext(Context);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        forgotPassword();
+        forgotPassword(email);
         event.target.reset();
     };
 

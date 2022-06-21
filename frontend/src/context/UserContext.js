@@ -7,7 +7,15 @@ import useAuth from '../hooks/useAuth';
 const Context = createContext();
 
 function UserProvider({ children }) {
-    const { authenticated, user, register, login, logout, loading } = useAuth();
+    const {
+        authenticated,
+        user,
+        register,
+        login,
+        logout,
+        loading,
+        forgotPassword,
+    } = useAuth();
 
     if (loading) {
         return (
@@ -24,7 +32,15 @@ function UserProvider({ children }) {
 
     return (
         <Context.Provider
-            value={{ authenticated, user, register, login, logout, loading }}
+            value={{
+                authenticated,
+                user,
+                register,
+                login,
+                logout,
+                loading,
+                forgotPassword,
+            }}
         >
             {children}
         </Context.Provider>
