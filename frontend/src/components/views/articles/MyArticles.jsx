@@ -6,10 +6,14 @@ import { Card } from 'react-bootstrap';
 import axios from '../../../utils/axios';
 
 import styles from './MyArticles.module.css';
+import ModalDelete from '../../modal/ModalDelete';
 
 export default function MyArticles() {
     const [articles, setArticles] = React.useState([]);
     const [token] = React.useState(localStorage.getItem('token') || '');
+    const [show, setShow] = React.useState(false);
+    const [articleId, setArticleId] = React.useState('');
+    const handleClose = () => setShow(false);
 
     React.useEffect(() => {
         axios
@@ -23,8 +27,24 @@ export default function MyArticles() {
             });
     }, []);
 
+    function handleDeleteArticle(id) {
+        setShow(true);
+        setArticleId(id);
+    }
+
+    const deleteArticle = async (e) => {
+        e.preventDefault();
+
+        console.log('deletado', articleId);
+    };
+
     return (
         <section>
+            <ModalDelete
+                handleDelete={deleteArticle}
+                show={show}
+                handleClose={handleClose}
+            />
             <h1 className="text-center py-4">Meus Artigos</h1>
             <div className="d-flex flex-wrap justify-content-evenly">
                 {articles.map((article) => (
@@ -44,7 +64,12 @@ export default function MyArticles() {
                                 <button type="submit">
                                     <BsFillPencilFill /> Editar
                                 </button>
-                                <button type="submit">
+                                <button
+                                    type="submit"
+                                    onClick={() =>
+                                        handleDeleteArticle(article.id)
+                                    }
+                                >
                                     <BsFillTrashFill /> Excluir
                                 </button>
                             </Card.Body>
