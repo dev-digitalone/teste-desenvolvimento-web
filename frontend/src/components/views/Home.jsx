@@ -12,7 +12,7 @@ export default function Home() {
         });
     }, []);
     return (
-        <section className="d-flex flex-wrap justify-content-between">
+        <section className="d-flex flex-wrap justify-content-evenly">
             {articles.map((article) => (
                 <div key={article.id} style={{ marginBlock: '2em' }}>
                     <Card style={{ width: '18rem' }}>
