@@ -10,6 +10,7 @@ import Login from './components/views/auth/Login';
 import Profile from './components/views/user/Profile';
 import CreateArticle from './components/views/articles/CreateArticle';
 import MyArticles from './components/views/articles/MyArticles';
+import ForgotPassword from './components/views/auth/ForgotPassword';
 
 import ToastAlert from './components/template/ToastAlert';
 
@@ -26,6 +27,10 @@ function App() {
                         <Route path="/meusartigos/" element={<MyArticles />} />
                         <Route path="/artigo" element={<CreateArticle />} />
                         <Route path="/perfil/:id" element={<Profile />} />
+                        <Route
+                            path="/recuperar-senha"
+                            element={<ForgotPassword />}
+                        />
                         <Route path="/entrar" element={<Login />} />
                         <Route path="/registrar" element={<Register />} />
                         <Route path="/" element={<Home />} />

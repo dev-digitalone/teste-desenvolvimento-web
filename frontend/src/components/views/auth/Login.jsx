@@ -53,7 +53,8 @@ export default function Login() {
                 </Form>
 
                 <span>
-                    Esqueceu a sua senha? <Link to="/">clique aqui</Link>
+                    Esqueceu a sua senha?{' '}
+                    <Link to="/recuperar-senha">clique aqui</Link>
                 </span>
                 <span>
                     Ainda não tem uma conta?{' '}
