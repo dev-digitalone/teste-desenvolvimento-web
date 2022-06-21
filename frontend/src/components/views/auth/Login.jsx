@@ -19,7 +19,7 @@ export default function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        setUser(login);
+        login(user);
     };
 
     return (
