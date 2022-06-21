@@ -9,6 +9,7 @@ import axios from '../utils/axios';
 export default function useAuth() {
     const { setAlerts } = useAlerts();
     const [authenticated, setAuthenticated] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate(false);
     const [token] = useState(localStorage.getItem('token') || '');
     const [user, setUser] = useState({});
@@ -25,6 +26,8 @@ export default function useAuth() {
                     setUser(res.data);
                 });
         }
+
+        setLoading(false);
     }, [token]);
 
     useEffect(() => {
@@ -94,5 +97,5 @@ export default function useAuth() {
         setAlerts(msgText, msgType);
     }
 
-    return { login, register, logout, authenticated, user };
+    return { login, register, logout, authenticated, user, loading };
 }
