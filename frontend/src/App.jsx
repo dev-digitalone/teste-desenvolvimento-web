@@ -11,6 +11,7 @@ import Profile from './components/views/user/Profile';
 import CreateArticle from './components/views/articles/CreateArticle';
 import MyArticles from './components/views/articles/MyArticles';
 import ForgotPassword from './components/views/auth/ForgotPassword';
+import ResetPassword from './components/views/auth/ResetPassword';
 
 import ToastAlert from './components/template/ToastAlert';
 
@@ -28,12 +29,16 @@ function App() {
                         <Route path="/artigo" element={<CreateArticle />} />
                         <Route path="/perfil/:id" element={<Profile />} />
                         <Route
+                            path="/resetar-senha"
+                            element={<ResetPassword />}
+                        />
+                        <Route
                             path="/recuperar-senha"
                             element={<ForgotPassword />}
                         />
                         <Route path="/entrar" element={<Login />} />
                         <Route path="/registrar" element={<Register />} />
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" exact element={<Home />} />
                     </Routes>
                 </ContainerContet>
                 <Footer />
