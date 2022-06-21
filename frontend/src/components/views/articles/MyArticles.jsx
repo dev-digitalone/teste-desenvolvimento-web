@@ -7,6 +7,7 @@ import axios from '../../../utils/axios';
 
 import styles from './MyArticles.module.css';
 import ModalDelete from '../../modal/ModalDelete';
+import useAlerts from '../../../hooks/useAlerts';
 
 export default function MyArticles() {
     const [articles, setArticles] = React.useState([]);
@@ -14,8 +15,9 @@ export default function MyArticles() {
     const [show, setShow] = React.useState(false);
     const [articleId, setArticleId] = React.useState('');
     const handleClose = () => setShow(false);
+    const { setAlerts } = useAlerts();
 
-    React.useEffect(() => {
+    const loadUserArticles = () => {
         axios
             .get('/articles/myArticles', {
                 headers: {
@@ -25,6 +27,10 @@ export default function MyArticles() {
             .then((res) => {
                 setArticles(res.data.articles);
             });
+    };
+
+    React.useEffect(() => {
+        loadUserArticles();
     }, []);
 
     function handleDeleteArticle(id) {
@@ -35,7 +41,25 @@ export default function MyArticles() {
     const deleteArticle = async (e) => {
         e.preventDefault();
 
-        console.log('deletado', articleId);
+        let msgtype = 'success';
+
+        const data = await axios
+            .delete(`/articles/${articleId}`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`,
+                },
+            })
+            .then((res) => {
+                setShow(false);
+                loadUserArticles();
+                return res.data.msg;
+            })
+            .catch((error) => {
+                msgtype = 'danger';
+                return error.response.data.msg;
+            });
+
+        setAlerts(data, msgtype);
     };
 
     return (
