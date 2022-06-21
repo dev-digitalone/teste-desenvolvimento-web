@@ -57,6 +57,7 @@ export default function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         saveArticle();
+        event.target.reset();
     };
 
     return (
