@@ -146,6 +146,8 @@ module.exports = class AuthController {
                 },
             });
 
+            const url = `${process.env.REST_PASS_URL}/${token}`;
+
             console.log(process.env.MY_EAMIL);
 
             mailer.sendMail(
@@ -153,7 +155,7 @@ module.exports = class AuthController {
                     to: email,
                     from: process.env.MY_EAMIL,
                     template: "auth/forgot_password",
-                    context: { token },
+                    context: { url },
                 },
                 (err) => {
                     if (err) {
@@ -162,11 +164,9 @@ module.exports = class AuthController {
                         });
                     }
 
-                    return res
-                        .status(200)
-                        .json({
-                            msg: "Recuperação de senha enviada com sucesso!",
-                        });
+                    return res.status(200).json({
+                        msg: "Recuperação de senha enviada com sucesso!",
+                    });
                 }
             );
         } catch (msg) {
