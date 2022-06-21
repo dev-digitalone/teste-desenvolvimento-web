@@ -1,20 +1,65 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-restricted-syntax */
 import React from 'react';
 
 import { Button, Card, Form } from 'react-bootstrap';
 import Inputs from '../../form/Inputs';
 
 import styles from '../../form/Form.module.css';
+import axios from '../../../utils/axios';
+import useAlerts from '../../../hooks/useAlerts';
 
 export default function Login() {
     const [article, setArticle] = React.useState({});
+    const [token] = React.useState(localStorage.getItem('token') || '');
+    const { setAlerts } = useAlerts();
 
     const handleChange = (e) => {
         setArticle({ ...article, [e.target.name]: e.target.value });
     };
 
+    const onFileChange = (e) => {
+        console.log({ ...article, image: [...e.target.files] });
+        setArticle({ ...article, image: [...e.target.files] });
+    };
+
+    async function saveArticle() {
+        let msgtype = 'success';
+
+        const fd = new FormData();
+
+        await Object.keys(article).forEach((key) => {
+            if (key === 'image') {
+                for (let i = 0; i < article[key].length; i++) {
+                    fd.append('image', article[key][i]);
+                }
+                console.log(article[key]);
+            } else {
+                fd.append(key, article[key]);
+            }
+        });
+        console.log(article);
+
+        const data = await axios
+            .post('/articles/create', fd, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then((res) => {
+                return res.data.msg;
+            })
+            .catch((error) => {
+                msgtype = 'danger';
+                return error.response.data.msg;
+            });
+        setAlerts(data, msgtype);
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(article);
+        saveArticle();
     };
 
     return (
@@ -53,7 +98,7 @@ export default function Login() {
                         placeholder="Selecione uma imagem"
                         type="file"
                         name="image"
-                        handleOnChange={handleChange}
+                        handleOnChange={onFileChange}
                     />
 
                     <div className="d-grid gap-2 col-12 mx-auto mt-5">
