@@ -10,7 +10,7 @@ Abra o terminal de comandos na pasta raiz do projeto e digite o comando ´´´ n
 
 ### Definindo rota da api
 
-no arquivo env_file adicione a rota da api.
+Na raiz do projeto crie um arquivo .env e cole as variaveis que estiverem no arquivo env_file e adicione a rota da api.
 
 Ex: REACT_APP_API=urlDaMinhaRota
 
