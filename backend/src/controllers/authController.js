@@ -148,12 +148,12 @@ module.exports = class AuthController {
 
             const url = `${process.env.REST_PASS_URL}/${token}`;
 
-            console.log(process.env.MY_EAMIL);
+            console.log(process.env.MY_EMAIL);
 
             mailer.sendMail(
                 {
                     to: email,
-                    from: process.env.MY_EAMIL,
+                    from: process.env.MY_EMAIL,
                     template: "auth/forgot_password",
                     context: { url },
                 },

@@ -24,11 +24,11 @@ DB_HOST= Host do banco de dados Ex: localhost
 
 AUTHSECRET= Seu segredo para gerar a criptografia do token jwt
 
-MY_EAMIL= Seu endereço de email para o envio de email de recuperação de senha
+MY_EMAIL= Seu endereço de email para o envio de email de recuperação de senha
 
 EMAIL_HOST= Host do servidor de email que você for utilizar
 
-EAMIL_PORT= Porta do servidor de email que você for utilizar
+EMAIL_PORT= Porta do servidor de email que você for utilizar
 
 EMAIL_USER= Seu email ou codigo do servidor que você estiver usando
 
