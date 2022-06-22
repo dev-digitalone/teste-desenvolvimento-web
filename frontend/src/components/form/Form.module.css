@@ -1,0 +1,39 @@
+.form_container {
+    max-width: 500px;
+    margin: 2em auto 0;
+    border-radius: 15px;
+    box-shadow: 8px 9px 30px 7px rgba(0, 0, 0, 0.75);
+    padding: 50px;
+}
+
+.form_container h1 {
+    text-align: left;
+    font-size: 2em;
+    border-bottom: 2px solid #444;
+    margin-bottom: 15px;
+    width: max-content;
+}
+
+.form_container input,
+.form_container input:focus {
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid #333;
+    box-shadow: none;
+}
+
+.form_container label {
+    margin-top: 1.5em;
+}
+
+input:invalid,
+input:valid {
+    box-shadow: none !important;
+}
+
+.form_container span {
+    margin-top: 1.5em;
+    text-align: center;
+}

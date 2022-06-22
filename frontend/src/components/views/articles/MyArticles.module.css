@@ -1,0 +1,37 @@
+.card {
+    transition: 250ms all;
+    width: 18em;
+    min-height: 100%;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card_actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card_actions button {
+    border: 0;
+    background: none;
+    color: #222;
+    font-size: 0.9em;
+    padding: 0.6em 1em;
+    cursor: pointer;
+    border: 1px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+.card_actions svg {
+    margin-right: 0.5em;
+}
+
+.card_actions button:hover {
+    background-color: #222;
+    color: #fff;
+}
