@@ -7,7 +7,11 @@ import styles from '../../form/Form.module.css';
 import Inputs from '../../form/Inputs';
 
 import axios from '../../../utils/axios';
+
 import useAlerts from '../../../hooks/useAlerts';
+
+import ModalDelete from '../../modal/ModalDelete';
+
 import { Context } from '../../../context/UserContext';
 
 export default function Profile() {
@@ -17,6 +21,7 @@ export default function Profile() {
     const { setAlerts } = useAlerts();
     const { id } = useParams();
     const navigate = useNavigate();
+    const [showDeleteModal, setShowDeleteModal] = React.useState(false);
 
     React.useEffect(() => {
         axios
@@ -66,6 +71,7 @@ export default function Profile() {
                 },
             })
             .then((res) => {
+                setShowDeleteModal(false);
                 return res.data.msg;
             })
             .catch((error) => {
@@ -78,8 +84,21 @@ export default function Profile() {
         navigate('/registrar');
     };
 
+    const handleClose = () => {
+        setShowDeleteModal(false);
+    };
+
+    const handleDeleteArticle = () => {
+        setShowDeleteModal(true);
+    };
+
     return (
         <section>
+            <ModalDelete
+                handleDelete={deleteUser}
+                show={showDeleteModal}
+                handleClose={handleClose}
+            />
             <Card className={styles.form_container}>
                 <div>
                     <h1>Perfil</h1>
@@ -124,7 +143,7 @@ export default function Profile() {
                         <Button type="submit">Atualizar</Button>
                     </div>
                     <div className="d-grid gap-2 col-12 mx-auto mt-5">
-                        <Button variant="danger" onClick={deleteUser}>
+                        <Button variant="danger" onClick={handleDeleteArticle}>
                             Excluir conta
                         </Button>
                     </div>
