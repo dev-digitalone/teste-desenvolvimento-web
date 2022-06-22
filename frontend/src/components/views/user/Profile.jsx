@@ -142,7 +142,7 @@ export default function Profile() {
                     <div className="d-grid gap-2 col-12 mx-auto mt-5">
                         <Button type="submit">Atualizar</Button>
                     </div>
-                    <div className="d-grid gap-2 col-12 mx-auto mt-5">
+                    <div className="d-grid gap-2 col-12 mx-auto mt-4">
                         <Button variant="danger" onClick={handleDeleteArticle}>
                             Excluir conta
                         </Button>

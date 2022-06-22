@@ -13,7 +13,7 @@ export default function ModalDelete({ handleDelete, show, handleClose }) {
                 <Button variant="secondary" onClick={handleClose}>
                     Cancelar
                 </Button>
-                <Button variant="primary" onClick={handleDelete}>
+                <Button variant="danger" onClick={handleDelete}>
                     Deletar
                 </Button>
             </Modal.Footer>
