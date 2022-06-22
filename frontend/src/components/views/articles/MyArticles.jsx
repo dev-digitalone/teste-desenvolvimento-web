@@ -105,7 +105,7 @@ export default function MyArticles() {
             <div className="d-flex flex-wrap justify-content-evenly">
                 {articles.map((article) => (
                     <div key={article.id} style={{ marginBlock: '2em' }}>
-                        <Card style={{ width: '18rem' }}>
+                        <Card className={styles.card}>
                             <Card.Img
                                 variant="top"
                                 src={`${

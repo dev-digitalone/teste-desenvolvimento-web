@@ -1,3 +1,13 @@
+.card {
+    transition: 250ms all;
+    width: 18em;
+    min-height: 100%;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
 .card_actions {
     display: flex;
     justify-content: space-around;

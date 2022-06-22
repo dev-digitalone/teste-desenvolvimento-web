@@ -3,6 +3,8 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import axios from '../../utils/axios';
 
+import styles from './articles/MyArticles.module.css';
+
 export default function Home() {
     const [articles, setArticles] = React.useState([]);
 
@@ -15,7 +17,7 @@ export default function Home() {
         <section className="d-flex flex-wrap justify-content-evenly">
             {articles.map((article) => (
                 <div key={article.id} style={{ marginBlock: '2em' }}>
-                    <Card style={{ width: '18rem' }}>
+                    <Card className={styles.card}>
                         <Card.Img
                             variant="top"
                             src={`${process.env.REACT_APP_API}${article.img_url
