@@ -71,6 +71,7 @@ export default function Profile() {
                 },
             })
             .then((res) => {
+                logout();
                 setShowDeleteModal(false);
                 return res.data.msg;
             })
@@ -80,7 +81,6 @@ export default function Profile() {
             });
 
         setAlerts(data, msgtype);
-        logout();
         navigate('/registrar');
     };
 
