@@ -108,9 +108,9 @@ export default function MyArticles() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img
                                 variant="top"
-                                src={`http://localhost:4000/${article.img_url
-                                    .split('public')
-                                    .join('')}`}
+                                src={`${
+                                    process.env.REACT_APP_API
+                                }${article.img_url.split('public').join('')}`}
                             />
                             <Card.Body>
                                 <Card.Title>{article.title}</Card.Title>

@@ -18,7 +18,7 @@ export default function Home() {
                     <Card style={{ width: '18rem' }}>
                         <Card.Img
                             variant="top"
-                            src={`http://localhost:4000/${article.img_url
+                            src={`${process.env.REACT_APP_API}${article.img_url
                                 .split('public')
                                 .join('')}`}
                         />
