@@ -5,7 +5,7 @@ const conn = require("./src/config/db/conn");
 const port = 4000;
 
 const User = require("./src/models/User");
-const Article = require("./src/models/Articles");
+const Article = require("./src/models/Article");
 
 conn.sync()
     .then(() => {

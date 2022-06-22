@@ -1,4 +1,4 @@
-const Article = require("../models/Articles");
+const Article = require("../models/Article");
 
 const { existsOrError, equalsOrError } = require("../utils/validations");
 const getUserByToken = require("../utils/get-user-by-token");

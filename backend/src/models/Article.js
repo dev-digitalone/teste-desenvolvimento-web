@@ -4,7 +4,7 @@ const db = require("../config/db/conn");
 
 const User = require("./User");
 
-const Articles = db.define("Articles", {
+const Article = db.define("Article", {
     title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -23,6 +23,10 @@ const Articles = db.define("Articles", {
     },
 });
 
-Articles.belongsTo(User);
+User.hasMany(Article, {
+    onDelete: "CASCADE",
+});
 
-module.exports = Articles;
+Article.belongsTo(User);
+
+module.exports = Article;
