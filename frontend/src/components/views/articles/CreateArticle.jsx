@@ -73,6 +73,7 @@ export default function Login() {
                         type="text"
                         name="title"
                         handleOnChange={handleChange}
+                        isRequired="required"
                     />
 
                     <Inputs
@@ -81,6 +82,7 @@ export default function Login() {
                         type="textarea"
                         name="description"
                         handleOnChange={handleChange}
+                        isRequired="required"
                     />
 
                     <Inputs
@@ -89,6 +91,7 @@ export default function Login() {
                         type="text"
                         name="author"
                         handleOnChange={handleChange}
+                        isRequired="required"
                     />
 
                     <Inputs
@@ -97,6 +100,7 @@ export default function Login() {
                         type="file"
                         name="image"
                         handleOnChange={onFileChange}
+                        isRequired="required"
                     />
 
                     <div className="d-grid gap-2 col-12 mx-auto mt-5">
