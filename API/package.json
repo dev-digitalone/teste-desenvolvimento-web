@@ -4,7 +4,7 @@
   "description": "Api de um projeto de teste para aplicação de uma vaga Web",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node ./src/server.js"
   },
   "keywords": [],
   "author": "Carlos Eduardo Souza Longhi",
