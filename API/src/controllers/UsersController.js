@@ -1,21 +1,21 @@
-const AppError = require("../utils/AppError")
+const knex = require("../database/knex")
 
 class UsersController {
-
-  create(request, response) {
+  async create(request, response) {
     const { name, email, password } = request.body
 
-    if(!name){
-      throw new AppError("Nome obrigatório!")
-    }    
-    if(!email){
-      throw new AppError("Email obrigatório!")
-    }
-    if(!password){
-      throw new AppError("Senha obrigatória!")
-    }
+    await knex('users').insert({
+      name,
+      email,
+      password
+    })
 
-    response.status(201).json({ name, email, password })
+    return response.status(201).json()
+  }
+
+  async index(request, response) {
+    const result = await knex('users')
+    return response.json(result)
   }
 }
 
