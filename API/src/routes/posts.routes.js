@@ -8,6 +8,7 @@ const postsController = new PostsController()
 postsRoutes.get('/', postsController.index)
 postsRoutes.post('/:user_id', postsController.create)
 postsRoutes.get('/:id', postsController.read)
+postsRoutes.put('/:id', postsController.update)
 postsRoutes.delete('/:id', postsController.delete)
 
 module.exports = postsRoutes

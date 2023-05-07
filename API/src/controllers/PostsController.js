@@ -35,11 +35,21 @@ class PostsController {
   async index(request, response) {
     const { user_id } = request.query
 
-    const notes = await knex('posts')
+    const posts = await knex('posts')
     .where({ user_id })
     .orderBy('created_at')
 
-    return response.json(notes)
+    return response.json(posts)
+  }
+
+  async update(request, response) {
+    const { title, description, img_url } = request.body
+
+    const { id } = request.params
+
+    await knex('posts').where({id}).update({title, description, img_url})
+
+    return response.status(201).json()
   }
 }
 
