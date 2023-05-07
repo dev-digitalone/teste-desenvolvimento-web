@@ -31,6 +31,16 @@ class PostsController {
 
     return response.json()
   }
+
+  async index(request, response) {
+    const { user_id } = request.query
+
+    const notes = await knex('posts')
+    .where({ user_id })
+    .orderBy('created_at')
+
+    return response.json(notes)
+  }
 }
 
 module.exports = PostsController
