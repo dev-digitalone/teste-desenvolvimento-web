@@ -23,6 +23,14 @@ class PostsController {
 
     return response.json(post)
   }
+
+  async delete(request, response) {
+    const { id } = request.params
+
+    await knex('posts').where({id}).delete()
+
+    return response.json()
+  }
 }
 
 module.exports = PostsController
