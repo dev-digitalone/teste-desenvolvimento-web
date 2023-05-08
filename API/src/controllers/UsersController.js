@@ -14,11 +14,6 @@ class UsersController {
 
     return response.status(201).json()
   }
-
-  async index(request, response) {
-    const result = await knex('users')
-    return response.json(result)
-  }
 }
 
 module.exports = UsersController

@@ -4,7 +4,7 @@ class PostsController {
   async create(request, response) {
     const { title, description, img_url } = request.body
 
-    const {user_id} = request.params
+    const user_id = request.user.id
 
     await knex('posts').insert({
       title,
@@ -33,7 +33,7 @@ class PostsController {
   }
 
   async index(request, response) {
-    const { user_id } = request.query
+    const user_id = request.user.id
 
     const posts = await knex('posts')
     .where({ user_id })
