@@ -5,8 +5,9 @@ export const Container = styled.header`
 
   min-height: 115px;
   width: 100%;
+  background-color: ${({theme}) => theme.COLORS.BACKGROUND_800};
 
-  border-bottom-width: 1px;
+  border-bottom-width: 2px;
   border-bottom-style: solid;
   border-bottom-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
 
@@ -32,15 +33,23 @@ export const Brand = styled.div`
 `
 
 export const Profile = styled.div`
-  padding-right: 10%;
+  margin-right: 10%;
   grid-area: profile;
   display: flex;
   align-items: center;
   white-space: nowrap;
-
-  gap: 5px;
-
   flex-direction: column;
+  
+  padding: 15px;
+  
+  background-color: ${({theme}) => theme.COLORS.BACKGROUND_900};
+  gap: 5px;
+  
+  border-radius: 30%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+
   h3 {
     font-size: 20px;
   }
