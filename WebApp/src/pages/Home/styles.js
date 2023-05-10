@@ -6,17 +6,10 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-
-  > Section {
-    width: 80%;
-    button {
-      width: fit-content;
-    }
-  }
 `
 
 export const Content = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   overflow-y: auto;
   ::-webkit-scrollbar {
@@ -34,4 +27,8 @@ export const Content = styled.div`
 `
 
 export const NewPost = styled.div`
+  width: fit-content;
+  position: fixed;
+  top: 15%; 
+  margin-left: 10%;
 `

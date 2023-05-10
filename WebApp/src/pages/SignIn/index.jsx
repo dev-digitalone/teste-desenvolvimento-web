@@ -25,7 +25,9 @@ export function SignIn() {
       <Form>
         <header>
           <h1>PostTrack</h1>
-          <p>Aplicação web para controle de publicações.</p>
+          <p>
+            Aplicação web para controle de publicações.
+          </p>
 
           <h2>Faça seu Login</h2>
         </header>

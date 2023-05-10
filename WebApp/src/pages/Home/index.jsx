@@ -11,20 +11,38 @@ import { CardPost } from '../../components/CardPost'
 import { Button } from '../../components/Button'
 
 export function Home(){
+  const [posts, setPosts] = useState([])
+  
   const navigate = useNavigate()
 
   function handleCreatePost() {
-    navigate('/new_post')
+    navigate('/posts')
   }
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await api.get(`/posts`)
+      setPosts(response.data)
+    }
+
+    fetchPosts()
+  },[])
 
   return (
     <Container>
       <Header/>
       
-      <Content>  
-        <CardPost/>
-        <CardPost/>
-        <CardPost/>
+      <Content> 
+        {
+          posts.map(post => (
+            <CardPost
+              key={String(post.id)}
+              data={post}
+            />
+          )
+          )
+        }
+
       </Content>
 
       <NewPost>
